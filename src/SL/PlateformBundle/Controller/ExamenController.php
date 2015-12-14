@@ -213,7 +213,7 @@ class ExamenController extends Controller
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
 
-        //if ($form->isValid()) {
+        
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('SLPlateformBundle:Examen')->find($id);
 
@@ -223,7 +223,7 @@ class ExamenController extends Controller
 
             $em->remove($entity);
             $em->flush();
-       // }
+    
             $session->getFlashBag()->add('notice', 'Suppression réussie.');
         return $this->redirect($this->generateUrl('sl_admin_examen_list'));
     }

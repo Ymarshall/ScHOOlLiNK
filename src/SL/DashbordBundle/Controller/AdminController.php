@@ -105,14 +105,7 @@ class AdminController extends Controller{
     //methode pour afficher la vue de voir professeur
     public function voirEducateurAction(Request $request,$id)
     {   
-        //creation de la variable session
-      //  $session=$request->getSession();
-      //  $session->set('educateur_courant', $id);
-
-          //recuperation de l'identifiant du user (directeur)
-          //  $user = $this->container->get('security.context')->getToken()->getUser();
-          //  $ident=$user->getId();
-
+       
         $repository = $this->getDoctrine()->getManager()->getRepository('SLPlateformBundle:Educateur');
         $lEducateur=$repository->find($id);
         return $this->render('SLDashbordBundle:Administrateur:voirEducateur.html.twig', array('lEducateur' => $lEducateur));
@@ -124,9 +117,6 @@ class AdminController extends Controller{
         //creation de la variable session
         $session=$request->getSession();
 
-          //recuperation de l'identifiant du user (directeur)
-          //  $user = $this->container->get('security.context')->getToken()->getUser();
-          //  $ident=$user->getId();
 
         $repository = $this->getDoctrine()->getManager()->getRepository('SLPlateformBundle:Examen');
         $lesExamens=$repository->getExamensBySchool($session->get('ecole_courante'));

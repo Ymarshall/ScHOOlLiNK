@@ -58,7 +58,6 @@ class NotesController extends Controller
             $em->persist($entity);
             $em->flush();
 
-          //return $this->redirect($this->generateUrl('details_ct_show', array('id' => $entity->getId())));
             $request->getSession()->getFlashBag()->add('notice', 'Ajout réussi.');
             return $this->redirect($this->get('router')->generate('sl_professeur_devoirs_interro',array('classe'=> $session->get('classe_courante') ,'matiere'=> $session->get('matiere_courante'))));
         }

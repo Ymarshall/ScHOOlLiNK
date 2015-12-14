@@ -9,7 +9,6 @@
 namespace SL\UserBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use SL\PlateformBundle\Form\ImageType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 

@@ -5,19 +5,15 @@ namespace SL\PlateformBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Doctrine\ORM\EntityRepository;
 
 class NotesTypeEdit extends AbstractType {
-
-    private $id;
 
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        // Récupération de la session
-        $this->id = $options['post_max_size_message'];
+        
         $builder
                 ->add('note')
                 ->add('coefficient')

@@ -4,7 +4,7 @@ namespace SL\PlateformBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Swift_Transport;
+
 class AccueilController extends Controller
 {
     public function indexAction()

@@ -11,7 +11,6 @@ use SL\PlateformBundle\Entity\Professeur;
 use SL\PlateformBundle\Form\ProfesseurType;
 use SL\PlateformBundle\Entity\EcoleProfesseur;
 use SL\PlateformBundle\Entity\EcolePersonne;
-use SL\PlateformBundle\Entity\User;
 
 /**
  * Professeur controller.
@@ -161,8 +160,6 @@ class ProfesseurController extends Controller
         }
 
         $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
-
         return $this->render('SLDashbordBundle:Administrateur:modifierProfesseur.html.twig',array('entity' => $entity,'form'   => $editForm->createView()));
     }
 

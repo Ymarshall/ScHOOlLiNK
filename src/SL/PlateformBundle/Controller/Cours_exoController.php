@@ -65,7 +65,6 @@ class Cours_exoController extends Controller
             $em->persist($entity);
             $em->flush();
             $request->getSession()->getFlashBag()->add('notice', 'Opération éffectuée avec succès.');
-           // return $this->redirect($this->generateUrl('cours_exo_show', array('id' => $entity->getId())));
              return $this->redirect($this->get('router')->generate('sl_professeur_cours_exo',array('classe'=> $session->get('classe_courante') ,'matiere'=> $session->get('matiere_courante'))));
         }
 
@@ -155,11 +154,7 @@ class Cours_exoController extends Controller
         $deleteForm = $this->createDeleteForm($id);
         
         return $this->render('SLDashbordBundle:Professeur:modifierCoursExo.html.twig',array('entity' => $entity,'form'   => $editForm->createView(),'delete_form' => $deleteForm->createView()));
-        /*return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        );*/
+       
     }
 
     /**
@@ -224,10 +219,9 @@ class Cours_exoController extends Controller
     {
         // Récupération de la session
             $session = $request->getSession();
-        //$form = $this->createDeleteForm($id);
-        //$form->handleRequest($request);
         
-       // if ($form->isValid()) {
+        
+       
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('SLPlateformBundle:Cours_exo')->find($id);
 
@@ -237,7 +231,7 @@ class Cours_exoController extends Controller
 
             $em->remove($entity);
             $em->flush();
-       // }
+     
             $session->getFlashBag()->add('notice', 'Suppression réussie.');
             return $this->redirect($this->get('router')->generate('sl_professeur_cours_exo',array('classe'=> $session->get('classe_courante') ,'matiere'=> $session->get('matiere_courante'))));
     }

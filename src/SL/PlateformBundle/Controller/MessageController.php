@@ -45,7 +45,7 @@ class MessageController extends Controller
      */
     public function createAction(Request $request)
     {
-        $session=$request->getSession();
+       
         //recuperation de l'identifiant du user
             $user = $this->container->get('security.context')->getToken()->getUser();
             

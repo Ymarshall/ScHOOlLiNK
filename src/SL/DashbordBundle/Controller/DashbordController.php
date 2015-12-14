@@ -108,8 +108,7 @@ class DashbordController extends Controller
         //recuperation de l'identifiant du user
             $user = $this->container->get('security.context')->getToken()->getUser();
             $ident=$user->getId();
-        //recuperation de la variable session
-        $session=$request->getSession();
+       
         //recuperation de l'ecole
         $repository = $this->getDoctrine()->getManager()->getRepository('SLPlateformBundle:Ecole');
         
@@ -327,14 +326,7 @@ class DashbordController extends Controller
        
      //methode pour afficher la vue de profile
     public function profileAction()
-    {
-        //recuperation de l'identifiant du user
-            $user = $this->container->get('security.context')->getToken()->getUser();
-            $ident=$user->getId();
-            
-        
-       // $repository = $this->getDoctrine()->getManager()->getRepository('SLPlateformBundle:Message');
-       // $leMessage=$repository->find($id);
+    {            
         return $this->render('SLDashbordBundle:Dashbord:profile.html.twig');
     }
     
@@ -342,8 +334,7 @@ class DashbordController extends Controller
     public function modifierPassAction(Request $request)
     {
        
-       // $repository = $this->getDoctrine()->getManager()->getRepository('SLPlateformBundle:Message');
-       // $leMessage=$repository->find($id);
+   
         return $this->render('SLDashbordBundle:Dashbord:modifierPass.html.twig');
     }
     
@@ -379,9 +370,7 @@ class DashbordController extends Controller
         $entity2 = new EleveExamen();
         $form2 = $this->createCreateForm3($entity2,$request);
         
-        //recuperation des type de details cr
-       // $repository = $this->getDoctrine()->getManager()->getRepository('SLPlateformBundle:Type_details_cr');
-       // $lesTypes=$repository->getTypeDetailsByUser($ident);
+        
         return $this->render('SLDashbordBundle:Professeur:ajoutNoteExamen.html.twig', array('form2' => $form2->createView()));
     }
    

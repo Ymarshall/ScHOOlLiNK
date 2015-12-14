@@ -62,7 +62,6 @@ class ClasseController extends Controller
             $em->persist($entity);
             $em->flush();
 
-           //return $this->redirect($this->generateUrl('details_ct_show', array('id' => $entity->getId())));
             $session->getFlashBag()->add('notice', 'Classe créée avec succès.');
             return $this->redirect($this->get('router')->generate('sl_professeur_list_classe'));
         }

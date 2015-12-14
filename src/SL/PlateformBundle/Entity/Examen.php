@@ -203,8 +203,7 @@ class Examen
     
        public function __construct()
   {
-        //   $this->dateDebut= new \DateTime();
-        //   $this->dateFin = new \DateTime();
+      
     $this->eleveexamens = new ArrayCollection();
     $this->classes = new ArrayCollection();
   }

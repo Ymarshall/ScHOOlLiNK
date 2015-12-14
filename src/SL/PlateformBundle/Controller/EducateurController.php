@@ -152,8 +152,6 @@ class EducateurController extends Controller
         }
 
         $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
-
         return $this->render('SLDashbordBundle:Administrateur:modifierEducateur.html.twig',array('entity' => $entity,'form'   => $editForm->createView()));
     }
 

@@ -64,7 +64,6 @@ class Details_ctController extends Controller
             $em->persist($entity);
             $em->flush();
             
-            //return $this->redirect($this->generateUrl('details_ct_show', array('id' => $entity->getId())));
             $request->getSession()->getFlashBag()->add('notice', 'Mise à jour du Cahier de texte éffectuée avec succès.');
             return $this->redirect($this->get('router')->generate('sl_professeur_cahier_texte',array('classe'=> $session->get('classe_courante') ,'matiere'=> $session->get('matiere_courante'))));
         }
@@ -151,13 +150,8 @@ class Details_ctController extends Controller
         }
 
         $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
         return $this->render('SLDashbordBundle:Professeur:modifierCahier.html.twig',array('entity' => $entity,'form'   => $editForm->createView()));
-       /* return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        );*/
+       
     }
 
     /**
