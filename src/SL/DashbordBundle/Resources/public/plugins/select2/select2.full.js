@@ -3329,7 +3329,6 @@ S2.define('select2/data/ajax',[
 
         callback(results);
       }, function () {
-        // TODO: Handle AJAX errors
       });
 
       self._request = $request;

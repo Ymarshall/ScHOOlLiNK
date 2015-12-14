@@ -1,4 +1,3 @@
-// TODO: in future try to replace most inline compability checks with polyfills for code readability 
 
 // element.textContent polyfill.
 // Unsupporting browsers: IE8
@@ -75,8 +74,7 @@ var wysihtml5 = {
         // AMD. Register as an anonymous module.
         define(factory);
 /*
-    TODO: look into this properly.
-    
+       
     } else if (typeof exports == "object") {
         // Node/CommonJS style for Browserify
         module.exports = factory;
@@ -5322,7 +5320,7 @@ wysihtml5.dom.copyAttributes = function(attributesToCopy) {
   };
 
 })(wysihtml5);
-;// TODO: Refactor dom tree traversing here
+;
 (function(wysihtml5) {
   wysihtml5.dom.domNode = function(node) {
     var defaultNodeTypes = [wysihtml5.ELEMENT_NODE, wysihtml5.TEXT_NODE];
@@ -5695,7 +5693,7 @@ wysihtml5.dom.hasElementWithTagName = (function() {
     }
   };
 };
-;// TODO: Refactor dom tree traversing here
+;
 (function(wysihtml5) {
   wysihtml5.dom.lineBreaks = function(node) {
 
@@ -5860,8 +5858,7 @@ wysihtml5.dom.observe = function(element, eventNames, handler) {
  */
 
 wysihtml5.dom.parse = function(elementOrHtml_current, config_current) {
-  /* TODO: Currently escaped module pattern as otherwise folloowing default swill be shared among multiple editors.
-   * Refactor whole code as this method while workind is kind of awkward too */
+  
 
   /**
    * It's not possible to use a XMLParser/DOMParser as HTML5 is not always well-formed XML
@@ -5977,7 +5974,6 @@ wysihtml5.dom.parse = function(elementOrHtml_current, config_current) {
               fragment.appendChild(oldNode.ownerDocument.createElement("br"));
             }
 
-            // TODO: try to minimize surplus spaces
             if (wysihtml5.lang.array([
                 "div", "pre", "p",
                 "table", "td", "th",
@@ -6308,7 +6304,6 @@ wysihtml5.dom.parse = function(elementOrHtml_current, config_current) {
     return attributes;
   }
 
-  // TODO: refactor. Too long to read
   function _handleAttributes(oldNode, newNode, rule, clearInternals) {
     var attributes          = {},                         // fresh new set of attributes to set on newNode
         setClass            = rule.set_class,             // classes to set
@@ -6431,7 +6426,6 @@ wysihtml5.dom.parse = function(elementOrHtml_current, config_current) {
     for (attributeName in attributes) {
       // Setting attributes can cause a js error in IE under certain circumstances
       // eg. on a <img> under https when it's new attribute value is non-https
-      // TODO: Investigate this further and check for smarter handling
       try {
         newNode.setAttribute(attributeName, attributes[attributeName]);
       } catch(e) {}
@@ -6992,7 +6986,6 @@ wysihtml5.dom.replaceWithChildNodes = function(node) {
 
       // Catch js errors and pass them to the parent's onerror event
       // addEventListener("error") doesn't work properly in some browsers
-      // TODO: apparently this doesn't work in IE9!
       iframeWindow.onerror = function(errorMessage, fileName, lineNumber) {
         throw new Error("wysihtml5.Sandbox: " + errorMessage, fileName, lineNumber);
       };
@@ -7126,8 +7119,7 @@ wysihtml5.dom.replaceWithChildNodes = function(node) {
 
         // Catch js errors and pass them to the parent's onerror event
         // addEventListener("error") doesn't work properly in some browsers
-        // TODO: apparently this doesn't work in IE9!
-        // TODO: figure out and bind the errors logic for contenteditble mode
+      
         /*iframeWindow.onerror = function(errorMessage, fileName, lineNumber) {
           throw new Error("wysihtml5.Sandbox: " + errorMessage, fileName, lineNumber);
         }
@@ -7280,8 +7272,8 @@ wysihtml5.dom.getAttribute = function(node, attributeName) {
   } else if (HAS_GET_ATTRIBUTE_BUG && "outerHTML" in node) {
     // Don't trust getAttribute/hasAttribute in IE 6-8, instead check the element's outerHTML
     var outerHTML      = node.outerHTML.toLowerCase(),
-        // TODO: This might not work for attributes without value: <input disabled>
-        hasAttribute   = outerHTML.indexOf(" " + attributeName +  "=") != -1;
+
+                hasAttribute   = outerHTML.indexOf(" " + attributeName +  "=") != -1;
 
     return hasAttribute ? node.getAttribute(attributeName) : null;
   } else{
@@ -7320,10 +7312,7 @@ wysihtml5.dom.getAttributes = function(node) {
     }
   }
   return attributes;
-};;/**
-   * Check whether the given node is a proper loaded image
-   * FIXME: Returns undefined when unknown (Chrome, Safari)
-*/
+};;
 
 wysihtml5.dom.isLoadedImage = function (node) {
   try {
@@ -9047,7 +9036,6 @@ wysihtml5.quirks.ensureProperClearing = (function() {
       return false;
     },
 
-    // TODO: Figure out a method from following 2 that would work universally
     executeAndRestoreRangy: function(method, restoreScrollPosition) {
       var win = this.doc.defaultView || this.doc.parentWindow,
           sel = rangy.saveSelection(win);
@@ -9064,7 +9052,6 @@ wysihtml5.quirks.ensureProperClearing = (function() {
       rangy.restoreSelection(sel);
     },
 
-    // TODO: has problems in chrome 12. investigate block level and uneditable area inbetween
     executeAndRestore: function(method, restoreScrollPosition) {
       var body                  = this.doc.body,
           oldScrollTop          = restoreScrollPosition && body.scrollTop,
@@ -9264,8 +9251,7 @@ wysihtml5.quirks.ensureProperClearing = (function() {
 
     /**
      * Scroll the current caret position into the view
-     * FIXME: This is a bit hacky, there might be a smarter way of doing this
-     *
+     * 
      * @example
      *    selection.scrollIntoView();
      */
@@ -10370,8 +10356,6 @@ wysihtml5.Commands = Base.extend(
 
   wysihtml5.commands.createLink = {
     /**
-     * TODO: Use HTMLApplier or formatInline here
-     *
      * Turns selection into a link
      * If selection is already a link, it just changes the attributes
      *
@@ -11967,9 +11951,8 @@ wysihtml5.commands.formatCode = {
     }
   });
 })(wysihtml5);
-;/**
- * TODO: the following methods still need unit test coverage
- */
+;
+
 wysihtml5.views.View = Base.extend(
   /** @scope wysihtml5.views.View.prototype */ {
   constructor: function(parent, textareaElement, config) {
@@ -12911,7 +12894,6 @@ wysihtml5.views.View = Base.extend(
 
     if (!browser.canSelectImagesInContentEditable()) {
         dom.observe(element, "drop", function(event) {
-            // TODO: if I knew how to get dropped elements list from event I could limit it to only IMG element case
             setTimeout(function() {
                 that.selection.getSelection().removeAllRanges();
             }, 0);
