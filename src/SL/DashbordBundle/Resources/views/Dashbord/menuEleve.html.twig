@@ -1,0 +1,63 @@
+<!-- sidebar menu: : style can be found in sidebar.less -->
+<ul class="sidebar-menu">
+    <li class="header">MENU</li>
+    <li>
+        <a href="{{ path('sl_dashbord_homepage') }}">
+            <i class="fa fa-dashboard"></i> <span>Home</span> 
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('sl_dashbord_carnet') }}">
+            <i class="fa fa-bar-chart-o"></i> <span>Carnet de Correspondance</span> 
+        </a>
+    </li>
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-book"></i>
+            <span>Cahier de texte</span><i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+            {%for matiere in getMatiereByUser(app.user.id) %}
+                <li><a href="{{ path('sl_dashbord_cahiertexte', {'nombre': matiere.id }) }}"><i class="fa fa-circle-o"></i>{{ matiere.libelle }}</a></li>
+                    {% endfor %}
+        </ul>
+    </li>
+    <li>
+        <a href="{{ path('sl_dashbord_interrodev') }}">
+            <i class="fa fa-pencil-square-o"></i> <span>Devoirs et Interrogations</span> 
+        </a>
+    </li>
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-desktop"></i>
+            <span>Examen Blanc</span><i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+            {%for examen in getExamenByUser(app.session.get('annee_courante'),app.user.id) %}
+                <li><a href="{{ path('sl_dashbord_examen_voir_client', {'id' : app.user.id ,'examen':examen.id} ) }}"><i class="fa fa-circle-o"></i>{{examen.libelle}}</a></li>
+                    {% endfor %}
+        </ul>
+    </li>
+    <li>
+        <a href="{{ path('sl_dashbord_professeur') }}">
+            <i class="fa fa-users"></i> <span>Professeurs</span> 
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('sl_dashbord_ecole') }}">
+            <i class="fa fa-home"></i> <span>L'école</span> 
+        </a>
+    </li>
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-font"></i>
+            <span>Cours et exercices</span><i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+            {%for matiere in getMatiereByUser(app.user.id) %}
+                <li><a class="ajax-link" href="{{ path('sl_dashbord_coursexo', {'nombre': matiere.id }) }}"><i class="fa fa-circle-o"></i>{{matiere.libelle}}</a></li>
+                    {% endfor %}
+        </ul>
+    </li>
+    
+</ul>

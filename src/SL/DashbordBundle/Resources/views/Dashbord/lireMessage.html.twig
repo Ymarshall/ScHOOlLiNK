@@ -1,0 +1,75 @@
+{% extends "SLDashbordBundle:Dashbord:layoutDashbord.html.twig" %}
+
+{% block body %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Messages
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="{{ path('sl_dashbord_homepage') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                <li class="active">Messages</li>
+            </ol>
+        </section>
+
+
+
+        <!-- Main content -->
+        <section class="content">
+            
+          <div class="row">
+            <div class="col-md-3 col-xs-12">
+              <a href="{{ path('sl_dashbord_compose') }}" class="btn btn-primary btn-block margin-bottom">Compose</a>
+              <div class="box box-solid">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Menu</h3>
+                  <div class="box-tools">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                  </div>
+                </div>
+                <div class="box-body no-padding">
+                  <ul class="nav nav-pills nav-stacked">
+                    <li><a href="{{ path('sl_dashbord_message') }}"><i class="fa fa-inbox"></i> Boite de reception <span class="label label-primary pull-right">{{getNbombreMsgNonLuByUser(app.user.id)~' /' ~total}}</span></a></li>
+                    <li><a href="{{ path('sl_dashbord_message_envoye') }}"><i class="fa fa-envelope-o"></i> Messages envoyés<span class="label label-default pull-right">{{totalSend}}</span></a></li>
+                  </ul>
+                </div><!-- /.box-body -->
+              </div><!-- /. box -->
+              
+            </div><!-- /.col -->
+             <div class="col-md-9">
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Message : {{leMessage.objet}}</h3>
+                  <div class="box-tools pull-right">
+                    <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Previous"><i class="fa fa-chevron-left"></i></a>
+                    <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Next"><i class="fa fa-chevron-right"></i></a>
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-body no-padding">
+                  <div class="mailbox-read-info">
+                    <h3>{{leMessage.objet}}</h3>
+                    <h5>De: {{leMessage.emetteur.email}} <span class="mailbox-read-time pull-right">{{leMessage.dateMessage|date('d-m-Y H:i')}}</span></h5>
+                  </div><!-- /.mailbox-read-info -->
+                 
+                  <div class="mailbox-read-message">
+                      {{leMessage.contenu|raw}}
+                  </div><!-- /.mailbox-read-message -->
+                </div><!-- /.box-body -->
+                <div class="box-footer">
+                 
+                </div><!-- /.box-footer -->
+                <div class="box-footer">
+                  <button class="btn btn-default"><i class="fa fa-print"></i> Print</button>
+                </div><!-- /.box-footer -->
+              </div><!-- /. box -->
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </section><!-- /.content -->
+    </div>
+    <!--End Dashboard 2 -->
+    <div style="height: 40px;"></div>
+    {{ parent() }}
+
+{%endblock%}

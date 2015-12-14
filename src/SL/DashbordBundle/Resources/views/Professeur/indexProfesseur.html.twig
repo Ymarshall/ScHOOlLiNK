@@ -1,0 +1,152 @@
+{% extends "SLDashbordBundle:Dashbord:layoutDashbord.html.twig" %}
+
+
+{% block body %}
+    <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            Bienvenue
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Dashboard</li>
+          </ol>
+        </section>
+        
+      
+      <!-- Main content -->
+        <section class="content">
+          <!-- Info boxes -->
+          <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Nombre de classes</span>
+                  <span class="info-box-number">90<small>%</small></span>
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+            </div><!-- /.col -->
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Likes</span>
+                  <span class="info-box-number">41,410</span>
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+            </div><!-- /.col -->
+            <!-- fix for small devices only -->
+            <div class="clearfix visible-sm-block"></div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Sales</span>
+                  <span class="info-box-number">760</span>
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+            </div><!-- /.col -->
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">New Members</span>
+                  <span class="info-box-number">2,000</span>
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+          <div class="row-fluid">
+        <h4 class="page-header">EMPLOI DU TEMPS</h4>
+	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+
+                                    {% for jour in lesJours %}
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                            <div class="box box-solid box-primary">
+                                                    <div class="box-header with-border"">
+                                                            <h3 class="box-title">
+                                                                    <i class="fa fa-table"></i>
+                                                                    <span>{{ jour.libelle|upper}}</span>
+                                                            </h3>
+                                                            <div class="box-tools pull-right">
+                                                                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Réduire"><i class="fa fa-minus"></i></button>
+                                                                <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Supprimer"><i class="fa fa-times"></i></button>
+                                                            </div>
+                                                    </div>
+                                                    <div class="box-body">
+                                                            <table class="table">
+                                                                    <thead>
+                                                                            <tr>
+                                                                                    <tr>
+                                                                                    <th>Heure début</th>
+                                                                                    <th>Heure fin</th>
+                                                                                    <th>Matière</th>
+                                                                                    <th>Classe</th>
+                                                                            </tr>
+                                                                            </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        {%for composant in getComposantByJours(jour.id,app.user.id) %}
+                                                                            <tr class="info">
+                                                                                <td>{{composant.heureDebut|date('H:i')}}</td>
+                                                                                    <td>{{composant.heureFin|date('H:i')}}</td>
+                                                                                    <td>{{composant.matiere.libelle}}</td>
+                                                                                    <td>{{getClasseByComposant(composant.id).libelle}}</td>
+                                                                            </tr>
+                                                                            {% endfor %}
+                                                                    </tbody>
+                                                            </table>
+                                                    </div>
+                                            </div>
+                                    </div>
+                                    {% endfor %}	
+		</div>
+
+		<div class="col-lg-3 col-md-3 col-xs-12 col-sm-12">
+                  <!-- DIRECT CHAT -->
+                  <div class="box box-warning direct-chat direct-chat-warning">
+                    <div class="box-header with-border">
+                      <h3 class="box-title">Informations</h3>
+                      <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                        <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                      </div>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                      <!-- Conversations are loaded here -->
+                      
+                      <div class="direct-chat-messages">
+                          
+                          {%for info in lesInfos %}
+                              <div class="{%if loop.index is even %} right{%endif%}">
+                          <div class="direct-chat-info clearfix">
+                              <span class="direct-chat-timestamp pull-right">{{info.dateInformation|date('d-m-Y')}}</span>
+                          </div><!-- /.direct-chat-info -->
+                          <div class="direct-chat-text">
+                           <b>{{info.titre}}</b> - {{info.contenu}}
+                          </div><!-- /.direct-chat-text -->
+                        </div><!-- /.direct-chat-msg -->
+                        {%endfor%}                    
+
+                      </div><!--/.direct-chat-messages-->
+                     
+                    </div><!-- /.box-body -->
+                    
+                  </div><!--/.direct-chat -->
+                </div><!-- /.col --> 
+	</div>
+          
+          
+
+                                    
+	<div class="clearfix"></div>
+        </section>
+</div>
+<!--End Dashboard 2 -->
+<div style="height: 40px;"></div>
+{{ parent() }}
+
+{% endblock %}

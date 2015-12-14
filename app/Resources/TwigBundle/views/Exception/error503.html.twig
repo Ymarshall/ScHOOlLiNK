@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="{{ _charset }}" />
+        <title>An Error Occurred: {{ status_text }}</title>
+    </head>
+    <body align="center" bgcolor="#3c8dbc">
+        <h1 style="color: #ffffff;font-size: 60px; font-weight: bold;">ScHOOlLiNK</h1>
+        <h1>Oops! Une erreur est survenue</h1>
+        <h2>Le serveur à retourné "<span style="color: #ffffff;font-size: 60px;font-family: Hobo Std; font-weight: bold;">{{ status_code }}</span> {{ status_text }}".</h2>
+
+        <div>
+            <p>Le service demandé est indisponible.</p>
+            <p>Contactez l'administrateur svp.</p>
+        </div>
+    </body>
+</html>

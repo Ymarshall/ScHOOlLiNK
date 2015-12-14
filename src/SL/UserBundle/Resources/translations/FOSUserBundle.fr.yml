@@ -1,0 +1,22 @@
+# Registration
+registration:
+    check_email: Un e-mail a été envoyé à l'adresse %email%. Vous signifiant que votre compte a été créé et est activé.
+    confirmed: Félicitations %username%, votre compte est maintenant activé.
+    back: Retour à la page d'origine.
+    submit: Enregistrer
+    flash:
+        user_created: L'utilisateur a été créé avec succès
+    email:
+        subject: Bienvenue %username% !
+        message: |
+            Bonjour %username% !
+
+            Votre compte a été crée avec succès vous pouvez désormais vous connectez grâce à votre :
+                -login : %login%
+                -paswword : %plainPassword%
+
+            Cordialement,
+            L'équipe.
+
+
+

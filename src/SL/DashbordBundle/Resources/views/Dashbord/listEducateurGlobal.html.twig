@@ -1,0 +1,85 @@
+{% extends "SLDashbordBundle:Dashbord:layoutDashbord.html.twig" %}
+
+{% block body %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Bienvenue
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="{{ path('sl_dashbord_homepage') }}"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Educateurs</li>
+            </ol>
+        </section>
+
+          <!-- Main content -->
+        <section class="content">
+        <div class="box box-solid box-primary">
+            <div class="box-header">
+                <h3 class="box-title">Les Educateurs</h3>
+                <div class="box-tools pull-right">
+                        <a class="btn btn-box-tool" download="Sch_fichier_educateurs.xls" href="#" onclick="return ExcellentExport.excel(this, 'example1', 'Sch_fichier');"><i class="fa fa-file-excel-o"></i> &nbsp;exporter</a>
+                      </div>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th>Photo</th>
+                            <th>Nom</th>
+                            <th>Prénoms</th>
+                            <th>Contacts</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for educateur in lesEducateurs %}
+                            <!-- Start: list_row -->
+                            <tr>
+                                <td>{{loop.index}}</td>
+                                <td><img class="img-rounded" src="{{asset(educateur.personne.image.webPath)}}" width="60" height="60" alt=""></td>
+                                <td>{{educateur.personne.nom}}</td>
+                                <td>{{educateur.personne.prenoms}}</td>
+                                <td>{{educateur.personne.telephone}}</td>
+                                <td>{{educateur.personne.email}}</td>
+                            </tr>
+                        {%endfor%}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>N°</th>
+                            <th>Photo</th>
+                            <th>Nom</th>
+                            <th>Prénoms</th>
+                            <th>Contacts</th>
+                            <th>Email</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+        <div class="clearfix"></div>
+        </section>
+    </div>
+    <div style="height: 40px;"></div>
+    {{ parent() }}  
+    <!-- jQuery 2.1.4 -->
+    <script src="{{asset('bundles/sldashbord/plugins/jQuery/jQuery-2.1.4.min.js')}}"></script>
+        <script src="{{asset('bundles/sldashbord/js/excellentexport.js')}}">
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#example1").DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false
+            });
+        });
+    </script>
+{%endblock%}

@@ -1,0 +1,107 @@
+<!-- sidebar menu: : style can be found in sidebar.less -->
+<ul class="sidebar-menu">
+    <li class="header">MENU</li>
+    <li>
+        <a href="{{ path('sl_dashbord_homepage') }}">
+            <i class="fa fa-dashboard"></i> <span>Home</span> 
+        </a>
+    </li>
+    <li class="treeview">
+        <a href="#">
+            <i class="glyphicon glyphicon-list-alt"></i>
+            <span>Mes Classes</span><i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+            {%for classe in getClasseProfesseur(app.user.id) %}
+                <li><a href="{{ path('sl_professeur_listeeleves', {'nombre': classe.id }) }}"><i class="fa fa-circle-o"></i>{{classe.libelle}}</a></li>
+                    {% endfor %}
+        </ul>
+    </li>
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-book"></i>
+            <span>Cahier de texte</span><i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+            {%for classe in getClasseProfesseur(app.user.id) %}
+                <li><a href="#"><i class="fa fa-circle-o"></i>{{classe.libelle}}<i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu"> 
+                        {%for matiere in getMatiereByProf(classe.id,app.user.id) %}
+                            <li><a href="{{ path('sl_professeur_cahier_texte', {'classe': classe.id ,'matiere': matiere.id}) }}"><i class="fa fa-circle-o"></i> {{matiere.libelle}}</a></li>
+                            {%endfor%}
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    </li>
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-font"></i>
+            <span>Devoirs et Interrogations</span><i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+            {%for classe in getClasseProfesseur(app.user.id) %}
+                 <li><a href="#"><i class="fa fa-circle-o"></i>{{classe.libelle}}<i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu"> 
+                        {%for matiere in getMatiereByProf(classe.id,app.user.id) %}
+                            <li><a href="{{ path('sl_professeur_devoirs_interro', {'classe': classe.id ,'matiere': matiere.id}) }}"><i class="fa fa-circle-o"></i> {{matiere.libelle}}</a></li>
+                            {%endfor%}
+                    </ul>
+                </li>
+                    {% endfor %}
+
+        </ul>
+    </li>
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-desktop"></i>
+            <span>Examen Blanc</span><i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+            {%for examen in getExamens(app.session.get('annee_courante'),app.session.get('ecole_courante')) %}
+                <li><a href="{{ path('sl_dashbord_examen_list', {'id': examen.id }) }}"><i class="fa fa-circle-o"></i>{{examen.libelle}}</a></li>
+                    {% endfor %}
+        </ul>
+    </li>
+    <li>
+        <a href="{{ path('sl_dashbord_professeur_list') }}">
+            <i class="fa fa-users"></i> <span>Professeurs</span> 
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('sl_dashbord_educateur_list') }}">
+            <i class="fa fa-users"></i> <span>Educateurs</span> 
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('sl_dashbord_ecole') }}">
+            <i class="fa fa-home"></i> <span>L'école</span> 
+        </a>
+    </li>
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-font"></i>
+            <span>Cours et exercices</span><i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+            {%for classe in getClasseProfesseur(app.user.id) %}
+                <li><a class="ajax-link" href="#"><i class="fa fa-circle-o"></i>{{classe.libelle}}<i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu"> 
+                        {%for matiere in getMatiereByProf(classe.id,app.user.id) %}
+                            <li><a href="{{ path('sl_professeur_cours_exo', {'classe': classe.id ,'matiere': matiere.id}) }}"><i class="fa fa-circle-o"></i> {{matiere.libelle}}</a></li>
+                            {%endfor%}
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    </li>
+    <li class="treeview active">
+        <a href="#">
+            <i class="fa fa-envelope-o"></i> <span>Messages</span> <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+            <li class="active"><a href="{{ path('sl_dashbord_message') }}">Boite de Réception <span class="label label-primary pull-right">{{getNbombreMsgNonLuByUser(app.user.id)}}</span></a></li>
+            <li><a href="compose.html">Ecrire</a></li>
+        </ul>
+    </li>
+</ul>

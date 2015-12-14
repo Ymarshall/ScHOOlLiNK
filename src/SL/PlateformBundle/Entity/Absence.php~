@@ -1,0 +1,142 @@
+<?php
+
+namespace SL\PlateformBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * Absence
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="SL\PlateformBundle\Entity\AbsenceRepository")
+ */
+class Absence
+{
+    /**
+     * @ORM\OneToMany(targetEntity="SL\PlateformBundle\Entity\EleveCours", mappedBy="absence")
+     **/
+    private $elevescours;
+      /**    
+       * @ORM\ManyToMany(targetEntity="SL\PlateformBundle\Entity\Justificatif", mappedBy="absences")
+       * @ORM\JoinTable(name="absence_justificatif")
+       */ 
+    private $justificatifs; 
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="Nombre_heure", type="smallint")
+     */
+    private $nombreHeure;
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nombreHeure
+     *
+     * @param integer $nombreHeure
+     *
+     * @return Absence
+     */
+    public function setNombreHeure($nombreHeure)
+    {
+        $this->nombreHeure = $nombreHeure;
+
+        return $this;
+    }
+
+    /**
+     * Get nombreHeure
+     *
+     * @return integer
+     */
+    public function getNombreHeure()
+    {
+        return $this->nombreHeure;
+    }
+    
+      public function __construct()
+  {
+    $this->justificatifs = new ArrayCollection();
+    $this->elevescours = new ArrayCollection();
+    // ...
+  }
+
+  public function addJustificatif(Justificatif $justificatif=null)
+  {  
+    $this->justificatifs[] = $justificatif;
+
+    return $this;
+  }
+
+  public function removeJustificatif(Justificatif $justificatif)
+  {
+    $this->justificatifs->removeElement($justificatif);
+  }
+
+  public function getJustificatifs()
+  {
+    return $this->justificatifs;
+  }
+  
+
+  public function addEleveCours(EleveCours $elevecours)
+  {
+    $this->elevescours[] = $elevecours;
+
+    return $this;
+  }
+
+  public function removeEleveCours(EleveCours $elevecours)
+  {
+    $this->elevescours->removeElement($elevecours);
+  }
+
+  public function getElevesCours()
+  {
+    return $this->absences;
+  }
+
+    /**
+     * Add elevescour
+     *
+     * @param \SL\PlateformBundle\Entity\EleveCours $elevescour
+     *
+     * @return Absence
+     */
+    public function addElevescour(\SL\PlateformBundle\Entity\EleveCours $elevescour)
+    {
+        $this->elevescours[] = $elevescour;
+
+        return $this;
+    }
+
+    /**
+     * Remove elevescour
+     *
+     * @param \SL\PlateformBundle\Entity\EleveCours $elevescour
+     */
+    public function removeElevescour(\SL\PlateformBundle\Entity\EleveCours $elevescour)
+    {
+        $this->elevescours->removeElement($elevescour);
+    }
+}

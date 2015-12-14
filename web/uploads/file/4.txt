@@ -1,0 +1,95 @@
+2015-06-03 09:18:39 ERROR  : Error connecting to the server: FATAL:  authentification par mot de passe échouée pour l'utilisateur  « postgres »
+
+2015-06-03 14:10:35 ERROR  : Error connecting to the server: FATAL:  authentification par mot de passe échouée pour l'utilisateur  « postgres »
+
+2015-06-08 17:49:34 ERROR  : Error connecting to the server: FATAL:  authentification par mot de passe échouée pour l'utilisateur  « postgres »
+
+2015-06-08 18:02:20 ERROR  : Error connecting to the server: FATAL:  authentification par mot de passe échouée pour l'utilisateur  « postgres »
+
+2015-06-09 09:42:28 ERROR  : Error connecting to the server: FATAL:  authentification par mot de passe échouée pour l'utilisateur  « postgres »
+
+2015-06-09 10:47:01 ERROR  : ERREUR:  les collationnements ne sont pas supportés par le type integer
+LINE 3:    "Id_person" integer COLLATE pg_catalog."C" NOT NULL, 
+                               ^
+2015-06-09 10:48:27 ERROR  : ERREUR:  la relation « Personne » existe déjà
+2015-06-09 10:48:38 ERROR  : ERREUR:  la relation « Personne » existe déjà
+2015-06-09 10:49:01 ERROR  : ERREUR:  la relation « Personne » existe déjà
+2015-06-09 10:50:22 ERROR  : ERREUR:  la relation « Personne » existe déjà
+2015-06-09 12:25:03 ERROR  : ERREUR:  la table « agence » n'existe pas
+2015-06-09 12:27:27 ERROR  : ERREUR:  n'a pas pu supprimer table agence car d'autres objets en dépendent
+DETAIL:  contrainte fk_commenta_concerner_agence sur table commentaire dépend de table agence
+HINT:  Utilisez DROP ... CASCADE pour supprimer aussi les objets dépendants.
+2015-06-09 12:27:47 ERROR  : ERREUR:  n'a pas pu supprimer table agence car d'autres objets en dépendent
+DETAIL:  contrainte fk_commenta_concerner_agence sur table commentaire dépend de table agence
+HINT:  Utilisez DROP ... CASCADE pour supprimer aussi les objets dépendants.
+2015-06-10 12:34:06 ERROR  : ERREUR:  le schéma « Annuaire » existe déjà
+2015-06-10 12:44:23 ERROR  : ERREUR:  il n'existe aucune contrainte unique correspondant aux clés données pour la
+table « Agenc_Entreprise » référencée
+2015-06-10 12:44:37 ERROR  : ERREUR:  il n'existe aucune contrainte unique correspondant aux clés données pour la
+table « Agenc_Entreprise » référencée
+2015-06-10 12:45:32 ERROR  : ERREUR:  il n'existe aucune contrainte unique correspondant aux clés données pour la
+table « Agenc_Entreprise » référencée
+2015-06-10 12:55:23 ERROR  : ERREUR:  la relation « Commentaire » existe déjà
+2015-06-10 12:55:55 ERROR  : ERREUR:  la relation « Commentaire » existe déjà
+2015-06-10 12:56:28 ERROR  : ERREUR:  la relation « Commentaire » existe déjà
+2015-06-10 13:03:38 ERROR  : ERREUR:  la relation « District » existe déjà
+2015-06-10 13:03:56 ERROR  : ERREUR:  la relation « District » existe déjà
+2015-06-10 13:12:03 ERROR  : ERREUR:  la relation « Comment_Entreprise » existe déjà
+2015-06-10 13:12:18 ERROR  : ERREUR:  la relation « Comment_Entreprise » existe déjà
+2015-06-10 13:12:31 ERROR  : ERREUR:  la relation « Comment_Entreprise » existe déjà
+2015-06-10 13:18:06 ERROR  : ERREUR:  la relation « Commun_Entreprise » existe déjà
+2015-06-10 13:23:07 ERROR  : ERREUR:  la relation « Distri_Entreprise » existe déjà
+2015-06-10 13:23:38 ERROR  : ERREUR:  la relation « Distri_Entreprise » existe déjà
+2015-06-10 13:24:06 ERROR  : ERREUR:  la relation « Distri_Entreprise » existe déjà
+2015-06-10 13:48:03 ERROR  : ERREUR:  la relation « Distric_Entreprise » existe déjà
+2015-06-10 13:48:12 ERROR  : ERREUR:  la relation « Distric_Entreprise » existe déjà
+2015-06-10 13:49:46 ERROR  : ERREUR:  la relation « Distric_Entreprise » existe déjà
+2015-06-10 13:55:34 ERROR  : ERREUR:  la relation « Distric_Entreprise » existe déjà
+2015-06-10 14:03:17 ERROR  : ERREUR:  la relation « Administrateur » existe déjà
+2015-06-10 14:03:32 ERROR  : ERREUR:  la relation « Administrateur » existe déjà
+2015-06-10 14:04:36 ERROR  : ERREUR:  la relation « Administrateur » existe déjà
+2015-06-10 14:04:45 ERROR  : ERREUR:  la relation « Administrateur » existe déjà
+2015-06-10 14:05:19 ERROR  : ERREUR:  la relation « Administrateur » existe déjà
+2015-06-10 14:05:31 ERROR  : ERREUR:  la relation « Administrateur » existe déjà
+2015-06-11 16:30:16 ERROR  : Error connecting to the server: FATAL:  authentification par mot de passe échouée pour l'utilisateur  « postgres »
+
+2015-06-11 16:31:26 ERROR  : ERREUR:  n'a pas pu supprimer schéma Annuaire car d'autres objets en dépendent
+DETAIL:  table "Annuaire"."Agenc_Entreprise" dépend de schéma Annuaire
+table "Annuaire"."Commun_Entreprise" dépend de schéma Annuaire
+table "Annuaire"."Comment_Entreprise" dépend de schéma Annuaire
+table "Annuaire"."Donner_Entreprise" dépend de schéma Annuaire
+HINT:  Utilisez DROP ... CASCADE pour supprimer aussi les objets dépendants.
+2015-06-12 16:23:04 ERROR  : ERREUR:  la table « agence » n'existe pas
+2015-06-12 16:24:56 ERROR  : ERREUR:  la base de données « db_annuaire » existe déjà
+2015-07-16 11:14:13 ERROR  : ERREUR:  la base de données « AnnuaireNumerique » est en cours d'utilisation par d'autres utilisateurs
+DETAIL:  1 autre session utilise la base de données.
+2015-07-20 14:10:43 ERROR  : ERREUR:  la base de données « Crystal » est en cours d'utilisation par d'autres utilisateurs
+DETAIL:  1 autre session utilise la base de données.
+2015-07-20 14:11:20 ERROR  : ERREUR:  la base de données « Crystal » est en cours d'utilisation par d'autres utilisateurs
+DETAIL:  1 autre session utilise la base de données.
+2015-07-20 14:12:08 ERROR  : ERREUR:  la base de données « Crystal » existe déjà
+2015-07-20 14:12:17 ERROR  : ERREUR:  la base de données « Crystal » existe déjà
+2015-07-20 14:12:36 ERROR  : ERREUR:  la base de données « Crystal » est en cours d'utilisation par d'autres utilisateurs
+DETAIL:  1 autre session utilise la base de données.
+2015-08-04 14:06:02 ERROR  : ERREUR:  n'a pas pu supprimer table agence car d'autres objets en dépendent
+DETAIL:  contrainte fk7d67573a4dd44fac sur table commentaire dépend de table agence
+HINT:  Utilisez DROP ... CASCADE pour supprimer aussi les objets dépendants.
+2015-08-04 14:14:32 ERROR  : ERREUR:  la colonne « contact » de la relation « agence » existe déjà
+2015-08-04 14:14:47 ERROR  : ERREUR:  la colonne « contact » de la relation « agence » existe déjà
+2015-08-04 16:57:50 ERROR  : ERREUR:  la colonne « agence_id » contient des valeurs NULL
+2015-08-04 16:58:19 ERROR  : ERREUR:  la colonne « agence_id » contient des valeurs NULL
+2015-08-04 16:59:10 ERROR  : ERREUR:  la colonne « agence_id » contient des valeurs NULL
+2015-08-04 17:01:23 ERROR  : ERREUR:  la colonne « agence_id » contient des valeurs NULL
+2015-08-04 17:14:45 ERROR  : ERREUR:  la colonne « agence_id » contient des valeurs NULL
+2015-08-04 17:16:22 ERROR  : ERREUR:  la colonne « agence_id » contient des valeurs NULL
+2015-08-04 17:20:52 ERROR  : ERREUR:  la colonne « agence_id » de la relation « entreprise » existe déjà
+2015-08-04 17:23:52 ERROR  : ERREUR:  le nom de la table « entreprise » est spécifié plus d'une fois
+2015-08-04 17:26:48 ERROR  : ERREUR:  une instruction insert ou update sur la table « entreprise » viole la contrainte de clé
+étrangère « agence_id »
+DETAIL:  La clé (id)=(36) n'est pas présente dans la table « agence ».
+2015-08-05 17:41:03 ERROR  : ERREUR:  la colonne « description » contient des valeurs NULL
+2015-08-28 09:50:09 ERROR  : ERREUR:  la colonne « confirm » de la relation « utilisateur » existe déjà
+2015-09-10 14:25:11 ERROR  : ERREUR:  la relation « id_destinateur » existe déjà
+2015-09-10 14:26:00 ERROR  : ERREUR:  la relation « id_destinateur » existe déjà
+2015-09-10 15:04:56 ERROR  : ERREUR:  la contrainte « id_personne » de la relation « Destinateur » existe déjà
+2015-09-11 11:34:01 ERROR  : ERREUR:  la colonne « id_standard » de la relation « Message » existe déjà

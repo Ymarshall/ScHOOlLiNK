@@ -1,0 +1,53 @@
+
+security:
+    encoders:
+        SL\PlateformBundle\Entity\User: sha512
+        
+    role_hierarchy:
+        ROLE_ELEVE : ROLE_USER
+        ROLE_PROFESSEUR : ROLE_USER
+        ROLE_EDUCATEUR : ROLE_USER
+        ROLE_PARENT : ROLE_USER
+        ROLE_ADMIN: ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_ELEVE, ROLE_PROFESSEUR, ROLE_PARENT, ROLE_EDUCATEUR, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        
+    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    providers:
+        main:
+            id: fos_user.user_provider.username
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+            
+        main:
+            pattern:   ^/
+            anonymous: true
+            provider:  main
+            form_login:
+                login_path: fos_user_security_login
+                check_path: fos_user_security_check
+                csrf_provider: security.csrf.token_manager
+                failure_path: null
+                remember_me: true
+                default_target_path: /dashboard
+            logout:
+                path:   /logout
+                target: /
+            remember_me:
+                # %secret% est un paramètre de parameters.yml
+                key:        %secret% 
+                lifetime:   30000000
+                path: /
+                domain: ~
+
+    access_control:
+        - { path: ^/connexion$, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/dashboard, roles: ROLE_USER}
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_ADMIN }
+
+       

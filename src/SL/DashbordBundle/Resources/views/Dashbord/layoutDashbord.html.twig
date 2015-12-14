@@ -1,0 +1,49 @@
+{% extends "SLDashbordBundle::layout.html.twig" %}
+
+{% block link %}
+<!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+          <!-- Sidebar user panel -->
+          <div class="user-panel">
+            <div class="pull-left image">
+              <img src="{{ asset(app.user.image.webPath) }}" class="img-circle" alt="{{ app.user.image.alt }}">
+            </div>
+            <div class="pull-left info">
+              <p>{{ app.user.nom ~' '~ app.user.prenoms }}</p>
+              <a href="#"><i class="fa fa-circle text-success"></i> Connecté</a>
+            </div>
+          </div>
+          <!-- search form -->
+          <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+              <input type="text" name="q" class="form-control" placeholder="Search...">
+              <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </form>
+          <!-- /.search form -->
+          <!-- sidebar menu: : style can be found in sidebar.less -->
+          {%if is_granted("ROLE_ELEVE") %}
+              {%include 'SLDashbordBundle:Dashbord:menuEleve.html.twig'%}
+              {%elseif is_granted("ROLE_PROFESSEUR")%}
+                  {%include 'SLDashbordBundle:Dashbord:menuProfesseur.html.twig'%}
+                  {%elseif is_granted("ROLE_ADMIN")%}
+                      {%include 'SLDashbordBundle:Administrateur:menuAdmin.html.twig'%}
+                   {%elseif is_granted("ROLE_EDUCATEUR")%}
+                      {%include 'SLDashbordBundle:Educateur:menuEducateur.html.twig'%}
+                   {%else%}
+                       {%include 'SLDashbordBundle:Parent:menuParent.html.twig'%}
+                  {%endif%}
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+{% endblock %}
+
+{% block body %}
+    {{parent()}}
+
+{% endblock %}
+

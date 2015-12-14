@@ -1,0 +1,199 @@
+{% extends "SLDashbordBundle:Dashbord:layoutDashbord.html.twig" %}
+
+{% block body %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Carnet de correspondance de {{lEleve.personne.nom ~' '~lEleve.personne.prenoms}}
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="{{ path('sl_dashbord_homepage') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                <li class="active">Carnet de correspondance</li>
+            </ol>
+        </section>
+
+
+
+        <section class="content">
+            {% for message in app.session.flashbag.get('notice') %}
+                         <div class="alert alert-success alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h4<i class="icon fa fa-check"></i> Notice!</h4>
+                             {{ message }}
+                        </div>
+                    {% endfor %}
+            <div class="row">
+                <div class="col-md-3 col-xs-12">
+
+                    <!-- Profile Image -->
+                    <div class="box box-primary">
+                        <div class="box-body box-profile">
+                            <img class="profile-user-img img-responsive img-circle" src="{{ asset(lEleve.personne.image.webPath) }}" alt="{{lEleve.personne.image.alt}}">
+                            <h3 class="profile-username text-center">{{lEleve.personne.nom ~' '~lEleve.personne.prenoms}}</h3>
+                            <p class="text-muted text-center">Eleve </p>
+
+                            <ul class="list-group list-group-unbordered">
+                                <li class="list-group-item">
+                                    <b>Classe</b><a href="{{ path('sl_professeur_listeeleves', {'nombre': lEleve.classe.id }) }}" class="pull-right">{{lEleve.classe.libelle}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Sexe</b> <a class="pull-right">{{lEleve.personne.sexe.libelle}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Date d'inscription</b> <a class="pull-right">{{lEleve.personne.dateCreation|date('d-m-Y')}}</a>
+                                </li>
+                            </ul>
+
+                                    {%if is_granted("ROLE_EDUCATEUR")%} <a href="{{ path('sl_educateur_modifier_eleve', {'id' : lEleve.id } ) }}" class="btn btn-block btn-primary btn-social"><i class="glyphicon glyphicon-pencil"></i> Modifier  </a>{%endif%}
+
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+
+                    <!-- About My parent -->
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Informations Personnelles</h3>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+                            <ul class="list-group list-group-unbordered">
+                                <li class="list-group-item">
+                                    <b>Matricule</b> <a class="pull-right">{{lEleve.matricule}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Nom</b> <a class="pull-right">{{lEleve.personne.nom}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Prénoms</b> <a class="pull-right">{{lEleve.personne.prenoms}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Téléphone</b> <a class="pull-right">{{lEleve.personne.telephone}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Email</b> <a class="pull-right">{{lEleve.personne.email}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Date de Naissance</b> <a class="pull-right">{{lEleve.personne.dateNaissance|date('d-m-Y')}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Adresse</b> <a class="pull-right">{{lEleve.personne.adresse.adresse}}</a>
+                                </li>
+                            </ul>
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Parent</h3>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+                            {%if lEleve.parent%}
+                            <ul class="list-group list-group-unbordered">
+                                <li class="list-group-item">
+                                    <b>Nom et prénoms</b> <a class="pull-right">{{lEleve.parent.personne.nom~' '~lEleve.parent.personne.prenoms}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Telephone</b> <a class="pull-right">{{lEleve.parent.personne.telephone}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Email</b> <a class="pull-right">{{lEleve.parent.personne.email}}</a>
+                                </li>
+                            </ul>
+                            {%else%}
+                                {%if is_granted("ROLE_EDUCATEUR")%}
+                                <a href="{{ path('sl_educateur_ajouter_parent')}}" class="pull-right">Ajouter Parent</a>
+                                {%else%}
+                                    Aucun parent ajouté
+                                {%endif%}
+                                {%endif%}
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+                </div><!-- /.col -->
+                <div class="col-md-9">
+                    <div class="nav-tabs-custom">
+                        <ul class="nav nav-tabs">
+                            {%for types in lesTypes %}
+                                
+                                    <li class="{%if loop.index==1%}active{%endif%}"><a href="{{'#'~types.libelle}}" data-toggle="tab">{{types.libelle|capitalize}}</a></li>
+                                
+                            {%endfor%}
+                            {%if is_granted("ROLE_EDUCATEUR")%}<li><a href="#ajouter" data-toggle="tab"><i class="glyphicon glyphicon-plus"></i>Ajouter</a></li>{%endif%}
+                        </ul>
+                        <div class="tab-content">
+                            {%for types in lesTypes %}
+                                <div class="{%if loop.index==1%}active{%endif%} tab-pane" id="{{types.libelle}}">
+                                <div class="callout">
+                                    <h4 class="bg-info"></h4>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Date</th>
+                                                <th>Objet</th>
+                                                <th>Commentaire</th>
+                                               {%if is_granted("ROLE_EDUCATEUR")%}  <th>Actions</th>{%endif%}
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {%for details in getDetailsCrByTypeAndEleve(types.id,app.session.get('eleve_courant')) %}
+                                                <tr>
+                                                    <td>{{loop.index}}</td>
+                                                    <td>{{details.dateMotif|date('d-m-Y')}}</td>
+                                                    <td>{{details.objet}}</td>
+                                                    <td>{{details.description}}</td>
+                                                    {%if is_granted("ROLE_EDUCATEUR") %} <td><a href="{{ path('sl_educateur_supprimer_detailcr',{'id': details.id})}}"  class="btn btn-primary btn-social" onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette ligne?'));"><i class="glyphicon glyphicon-remove"></i> Supprimer</a></td>{%endif%}
+
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    </div>   
+                                </div><!-- /.tab-pane -->
+                                {% endfor %}
+                                {%if is_granted("ROLE_EDUCATEUR") %}
+                                 <div class="tab-pane" id="ajouter">
+                    <table>
+                    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+                                    {# Les erreurs générales du formulaire. #}
+                                    {{ form_errors(form) }}
+                                  <div class="form-group">
+                                        {{ form_label(form.type_details_cr, "Nature", {'label_attr': {'class': 'control-label'}}) }}
+                                        {{ form_errors(form.type_details_cr) }}
+                                        {{ form_widget(form.type_details_cr, {'attr': {'class': 'required form-control'}}) }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form_label(form.objet, "Objet", {'label_attr': {'class': 'control-label'}}) }}
+                                        {{ form_errors(form.objet) }}
+                                        {{ form_widget(form.objet, {'attr': {'class': 'required form-control'}}) }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form_label(form.description, "Description", {'label_attr': {'class': 'control-label'}}) }}
+                                        {{ form_errors(form.description) }}
+                                        {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                   
+                                    
+                                        {{ form_widget(form.submit, {'attr': {'class': 'btn btn-lg btn-primary'}}) }}
+                                    
+                                         {{ form_end(form) }}
+                                   </table>
+                               
+                  </div><!-- /.tab-pane -->
+                  {%endif%}
+                       
+                            </div><!-- /.tab-content -->
+                        </div><!-- /.nav-tabs-custom -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+
+            </section><!-- /.content -->
+        </div>
+
+        <!--End Dashboard 2 -->
+        <div style="height: 40px;"></div>
+        {{ parent() }}
+        <!-- jQuery 2.1.4 -->
+        <script src="{{asset('bundles/sldashbord/plugins/jQuery/jQuery-2.1.4.min.js')}}"></script>
+
+        {%endblock%}

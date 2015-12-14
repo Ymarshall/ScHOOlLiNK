@@ -1,0 +1,90 @@
+{% extends "SLDashbordBundle:Dashbord:layoutDashbord.html.twig" %}
+
+{% block body %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Ajouter 
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="{{ path('sl_dashbord_homepage') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                <li class="active">Cahier de Texte</li>
+            </ol>
+        </section>
+
+
+
+        <!-- Main content -->
+        <section class="content">
+            
+            <div class="row">
+                <div class="col-md-3 col-xs-12">
+                    <a href="{{ path('sl_professeur_cours_exo', {'classe': app.session.get('classe_courante') ,'matiere': app.session.get('matiere_courante')}) }}" class="btn btn-primary btn-block margin-bottom">RETOUR</a>
+
+                </div><!-- /.col -->
+                <div class="col-md-9 col-xs-12">
+                    <!--Start Dashboard Tab 1-->
+                    <div id="dashboard-overview" class="row" style="visibility: visible; position: relative;">
+                        <div class="col-xs-12">
+
+                            <div class="row">
+
+                                <div class="box box-solid box-info">
+
+                                    <div class="box-header with-border">
+                  <h3 class="box-title">Formulaire</h3>
+                </div>
+                                    <div class="box-body">
+                                        <table class="table">
+                                            <tbody>
+                                                {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+                                                {# Les erreurs générales du formulaire. #}
+                                                {{ form_errors(form) }}
+
+                                            <div class="form-group">
+                                                {{ form_label(form.libelle, "Titre", {'label_attr': {'class': 'control-label'}}) }}
+                                                {{ form_errors(form.libelle) }}
+                                                {{ form_widget(form.libelle, {'attr': {'class': 'required form-control'}}) }}
+                                            </div>
+
+                                            <div class="form-group">
+                                                {{ form_label(form.nombrePage, "Nombre de page", {'label_attr': {'class': 'control-label'}}) }}
+                                                {{ form_errors(form.nombrePage) }}
+                                                {{ form_widget(form.nombrePage, {'attr': {'class': 'required form-control'}}) }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form_label(form.fichier, "Fichier", {'label_attr': {'class': 'control-label'}}) }}
+                                                {{ form_errors(form.fichier) }}
+                                                {{ form_widget(form.fichier, {'attr': {'class': 'required form-control'}}) }}
+                                            </div>
+                                            
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="box-footer">
+                                       {{ form_widget(form.submit, {'attr': {'class': 'btn btn-lg btn-primary'}}) }}
+                                            {{ form_end(form) }}
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <!--End Dashboard Tab 1-->
+
+                </div>
+            </div>
+                <div class="clearfix"></div>
+        </section>
+    </div>
+    <!--End Dashboard 2 -->
+    <div style="height: 40px;"></div>
+    {{ parent() }}
+
+{%endblock%}

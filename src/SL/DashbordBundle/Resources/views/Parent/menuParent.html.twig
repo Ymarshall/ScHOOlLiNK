@@ -1,0 +1,67 @@
+<!-- sidebar menu: : style can be found in sidebar.less -->
+          <ul class="sidebar-menu">
+            <li class="header">MENU</li>
+            <li>
+              <a href="{{ path('sl_dashbord_homepage') }}">
+                <i class="fa fa-dashboard"></i> <span>Home</span> 
+              </a>
+            </li>
+            <li>
+              <a href="{{ path('sl_dashbord_carnet') }}">
+                <i class="fa fa-bar-chart-o"></i> <span>Carnet de Correspondance</span> 
+              </a>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-book"></i>
+                <span>Cahier de texte</span><i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                  {%for matiere in getMatiereByUser(app.session.get('enfant')) %}
+		<li><a href="{{ path('sl_dashbord_parent_cahiertexte', {'nombre': matiere.id }) }}"><i class="fa fa-circle-o"></i>{{ matiere.libelle }}</a></li>
+                   {% endfor %}
+              </ul>
+            </li>
+            <li>
+              <a href="{{ path('sl_dashbord_parent_interrodev') }}">
+                <i class="fa fa-pencil-square-o"></i> <span>Devoirs et Interrogations</span> 
+              </a>
+            </li>
+             <li class="treeview">
+        <a href="#">
+            <i class="fa fa-desktop"></i>
+            <span>Examen Blanc</span><i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+            {%for examen in getExamenByUser(app.session.get('annee_courante'),app.session.get('enfant')) %}
+                <li><a href="{{ path('sl_dashbord_examen_voir_client', {'id' : app.session.get('enfant') ,'examen':examen.id} ) }}"><i class="fa fa-circle-o"></i>{{examen.libelle}}</a></li>
+                    {% endfor %}
+        </ul>
+    </li>
+            <li>
+              <a href="{{ path('sl_dashbord_parent_professeur') }}">
+                <i class="fa fa-users"></i> <span>Professeurs</span> 
+              </a>
+            </li>
+            <li>
+              <a href="{{ path('sl_dashbord_ecole') }}">
+                <i class="fa fa-home"></i> <span>L'école</span> 
+              </a>
+            </li>
+           
+           
+            <li>
+              <a href="{{ path('sl_admin_scolarite_classe_bis',{'id': app.session.get('enfant')}) }}">
+                <i class="fa fa-money"></i> <span>Scolarité</span> 
+              </a>
+            </li>
+            <li class="treeview active">
+        <a href="#">
+            <i class="fa fa-envelope-o"></i> <span>Messages</span> <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+            <li class="active"><a href="{{ path('sl_dashbord_message') }}">Boite de Réception <span class="label label-primary pull-right">{{getNbombreMsgNonLuByUser(app.user.id)}}</span></a></li>
+            <li><a href="compose.html">Ecrire</a></li>
+        </ul>
+    </li>
+          </ul>

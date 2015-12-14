@@ -1,0 +1,106 @@
+{% extends "SLDashbordBundle:Dashbord:layoutDashbord.html.twig" %}
+
+{% block body %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Classes
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="{{ path('sl_dashbord_homepage') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                <li class="active">Liste des classes</li>
+            </ol>
+        </section>
+
+
+
+        <!-- Main content -->
+        <section class="content">
+            {% for message in app.session.flashbag.get('notice') %}
+                         <div class="alert alert-success alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h4<i class="icon fa fa-check"></i> Notice!</h4>
+                             {{ message }}
+                        </div>
+                    {% endfor %}
+            <div class="row">
+                <div class="col-md-2 col-xs-12">
+                    <a href="{{ path('sl_professeur_ajouter_classe') }}" class="btn btn-primary btn-block btn-social"><i class="glyphicon glyphicon-plus"></i>Ajouter</a>
+
+                </div><!-- /.col -->
+                <div class="col-md-10 col-xs-12">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Liste</h3>
+                            <div class="box-tools pull-right">
+                        <a class="btn btn-box-tool" download="Sch_fichier_classe.xls" href="#" onclick="return ExcellentExport.excel(this, 'example1', 'Sch_fichier');"><i class="fa fa-file-excel-o"></i> &nbsp;exporter</a>
+                      </div>
+                        </div><!-- /.box-header -->
+                        <div class="box-body padding">
+                            <div class="table-responsive mailbox-messages">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>N°</th>
+                                            <th>Libéllé</th>
+                                            <th>Montant de scolarité</th>
+                                            <th>Effectif</th>
+                                            <th>Actions</th>
+                                            <th></th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {%for classe in lesClasses %}
+                                            <tr>
+
+                                                <td>{{loop.index}}</td>
+                                                <td><a href="{{ path('sl_professeur_listeeleves', {'nombre': classe.id }) }}">{{classe.libelle}}</a></td>
+                                                <td>{{classe.montantScolarite}}</td>
+                                                <td>{{getClasseEffectif(classe.id)}}</td>
+                                                <td><a href="{{ path('sl_admin_scolarite_classe',{'id': classe.id})}}" class="btn btn-block btn-primary btn-social"><i class="fa fa-money"></i>Scolarité</a></td>
+                                                <td><a href="{{ path('sl_admin_modifier_classe',{'id': classe.id})}}" class="btn btn-block btn-primary btn-social"><i class="fa fa-pencil"></i>Modifier</a></td>
+                                                <td><a href="{{ path('sl_admin_supprimer_classe',{'id': classe.id})}}" onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette classe?'));" class="btn btn-block btn-primary btn-social"><i class="glyphicon glyphicon-remove"></i>Supprimer</a></td>
+                                            </tr>
+                                        {%endfor%}
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>N°</th>
+                                            <th>Libéllé</th>
+                                            <th>Montant de scolarité</th>
+                                            <th>Effectif</th>
+                                            <th>Actions</th>
+                                            
+                                        </tr>
+                                    </tfoot>
+                                </table><!-- /.table -->
+                            </div><!-- /.mail-box-messages -->
+                        </div><!-- /.box-body -->
+
+                    </div><!-- /. box -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </section><!-- /.content -->
+    </div>
+    <!--End Dashboard 2 -->
+    <div style="height: 40px;"></div>
+    {{ parent() }}
+    <!-- jQuery 2.1.4 -->
+    <script src="{{asset('bundles/sldashbord/plugins/jQuery/jQuery-2.1.4.min.js')}}"></script>
+    <script src="{{asset('bundles/sldashbord/js/excellentexport.js')}}">
+    <script type="text/javascript">
+                                                    $(document).ready(function () {
+                                                        $("#example1").DataTable({
+                                                            "paging": true,
+                                                            "lengthChange": false,
+                                                            "searching": true,
+                                                            "ordering": true,
+                                                            "info": true,
+                                                            "autoWidth": false
+                                                        });
+                                                    });
+    </script>
+{%endblock%}

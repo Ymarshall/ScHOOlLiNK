@@ -1,0 +1,316 @@
+<?php
+
+namespace SL\PlateformBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping\UniqueConstraint as UniqueConstraint;
+
+/**
+ * Classe
+ *
+ * @ORM\Table(uniqueConstraints={@UniqueConstraint(name="classe_yr", columns={"libelle", "ecole_id","annee_scolaire_id"})})
+ * @ORM\Entity(repositoryClass="SL\PlateformBundle\Entity\ClasseRepository")
+ */
+class Classe
+{
+
+     /**
+     * @ORM\ManyToMany(targetEntity="SL\PlateformBundle\Entity\Examen", mappedBy="classes")
+     **/
+    private $examens;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="SL\PlateformBundle\Entity\ProfesseurMatiere", mappedBy="classe")
+     **/
+    private $professeurmatieres;
+   /**
+     * @ORM\OneToMany(targetEntity="SL\PlateformBundle\Entity\Eleve", mappedBy="classe")
+     */
+     private $eleves;
+    /**
+     * @ORM\ManyToOne(targetEntity="SL\PlateformBundle\Entity\Annee_scolaire", inversedBy="classes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+  private $annee_scolaire;
+  function getAnnee_scolaire() {
+      return $this->annee_scolaire;
+  }
+
+  function setAnnee_scolaire(Annee_scolaire $annee_scolaire) {
+      $this->annee_scolaire = $annee_scolaire;
+  }
+  /**
+     * @ORM\ManyToOne(targetEntity="SL\PlateformBundle\Entity\Ecole", inversedBy="classes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+  private $ecole;
+  function getEcole() {
+      return $this->ecole;
+  }
+
+  function setEcole(Ecole $ecole) {
+      $this->ecole = $ecole;
+  }
+
+      /**
+     * @ORM\OneToOne(targetEntity="SL\PlateformBundle\Entity\Emploi_temps", inversedBy="classes", cascade={"persist"})
+     * @ORM\JoinColumn(name="emploi_id", referencedColumnName="id")
+     **/
+  private $emploi_temps;
+
+    /**
+     * @ORM\OneToMany(targetEntity="SL\PlateformBundle\Entity\Reglement", mappedBy="classe")
+     */
+     private $reglements;
+     
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Libelle", type="string", length=128)
+     */
+    private $libelle;
+
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="Montant_scolarite", type="integer")
+     */
+    private $montantScolarite;
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set libelle
+     *
+     * @param string $libelle
+     *
+     * @return Classe
+     */
+    public function setLibelle($libelle)
+    {
+        $this->libelle = $libelle;
+
+        return $this;
+    }
+
+    /**
+     * Get libelle
+     *
+     * @return string
+     */
+    public function getLibelle()
+    {
+        return $this->libelle;
+    }
+
+    /**
+     * Set montantScolarite
+     *
+     * @param integer $montantScolarite
+     *
+     * @return Classe
+     */
+    public function setMontantScolarite($montantScolarite)
+    {
+        $this->montantScolarite = $montantScolarite;
+
+        return $this;
+    }
+
+    /**
+     * Get montantScolarite
+     *
+     * @return integer
+     */
+    public function getMontantScolarite()
+    {
+        return $this->montantScolarite;
+    }
+    
+   public function __construct()
+  {
+    $this->reglements = new ArrayCollection();
+    $this->eleves=new ArrayCollection();
+    $this->professeurmatieres = new ArrayCollection();
+
+  }
+
+  public function addReglement(Reglement $reglement)
+  {
+    $this->reglements[] = $reglement;
+
+    return $this;
+  }
+
+  public function removeReglement(Reglement $reglement)
+  {
+    $this->reglements->removeElement($reglement);
+  }
+
+  public function getReglements()
+  {
+    return $this->reglements;
+  }
+  
+  public function addEleve(Eleve $eleve)
+  {
+    $this->eleves[] = $eleve;
+
+    return $this;
+  }
+
+  public function removeEleve(Eleve $eleve)
+  {
+    $this->eleves->removeElement($eleve);
+  }
+
+  public function getEleves()
+  {
+    return $this->eleves;
+  }
+   
+    /**
+     * Set anneeScolaire
+     *
+     * @param \SL\PlateformBundle\Entity\Annee_scolaire $anneeScolaire
+     *
+     * @return Classe
+     */
+    public function setAnneeScolaire(\SL\PlateformBundle\Entity\Annee_scolaire $anneeScolaire)
+    {
+        $this->annee_scolaire = $anneeScolaire;
+
+        return $this;
+    }
+
+    /**
+     * Get anneeScolaire
+     *
+     * @return \SL\PlateformBundle\Entity\Annee_scolaire
+     */
+    public function getAnneeScolaire()
+    {
+        return $this->annee_scolaire;
+    }
+
+    /**
+     * Set emploiTemps
+     *
+     * @param \SL\PlateformBundle\Entity\Emploi_temps $emploiTemps
+     *
+     * @return Classe
+     */
+    public function setEmploiTemps(\SL\PlateformBundle\Entity\Emploi_temps $emploiTemps = null)
+    {
+        $this->emploi_temps = $emploiTemps;
+
+        return $this;
+    }
+
+    /**
+     * Get emploiTemps
+     *
+     * @return \SL\PlateformBundle\Entity\Emploi_temps
+     */
+    public function getEmploiTemps()
+    {
+        return $this->emploi_temps;
+    }
+    
+     public function addProfesseurmatiere(ProfesseurMatiere $professeurmatiere)
+  {
+    $this->professeurmatieres[] = $professeurmatiere;
+
+    return $this;
+  }
+
+  public function removeProfesseurmatiere(ProfesseurMatiere $professeurmatiere)
+  {
+    $this->professeurmatieres->removeElement($professeurmatiere);
+  }
+
+  public function getProfesseurmatieres()
+  {
+    return $this->professeurmatieres;
+  }
+
+    /**
+     * Add elefe
+     *
+     * @param \SL\PlateformBundle\Entity\Eleve $elefe
+     *
+     * @return Classe
+     */
+    public function addElefe(\SL\PlateformBundle\Entity\Eleve $elefe)
+    {
+        $this->eleves[] = $elefe;
+
+        return $this;
+    }
+
+    /**
+     * Remove elefe
+     *
+     * @param \SL\PlateformBundle\Entity\Eleve $elefe
+     */
+    public function removeElefe(\SL\PlateformBundle\Entity\Eleve $elefe)
+    {
+        $this->eleves->removeElement($elefe);
+    }
+
+  
+
+    /**
+     * Add examen
+     *
+     * @param \SL\PlateformBundle\Entity\Examen $examen
+     *
+     * @return Classe
+     */
+    public function addExamen(\SL\PlateformBundle\Entity\Examen $examen)
+    {
+        $this->examens[] = $examen;
+
+        return $this;
+    }
+
+    /**
+     * Remove examen
+     *
+     * @param \SL\PlateformBundle\Entity\Examen $examen
+     */
+    public function removeExamen(\SL\PlateformBundle\Entity\Examen $examen)
+    {
+        $this->examens->removeElement($examen);
+    }
+
+    /**
+     * Get examens
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getExamens()
+    {
+        return $this->examens;
+    }
+}

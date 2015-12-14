@@ -1,0 +1,18 @@
+services:
+    sluser.form.registration:
+        class: SL\UserBundle\Form\RegistrationType
+        tags: 
+            - {name: form.type, alias: sl_user_registration}
+            
+    sluser.form.profile:
+        class: SL\UserBundle\Form\ProfileType
+        tags: 
+            - {name: form.type, alias: sl_user_profile}
+    
+    sluser.form.changepassword:
+        class: SL\UserBundle\Form\ChangePasswordFormType
+        arguments: [%fos_user.model.user.class%]
+        tags: 
+            - {name: form.type, alias: sl_user_changepassword}
+        
+

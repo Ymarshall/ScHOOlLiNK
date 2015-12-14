@@ -1,0 +1,52 @@
+{% extends "SLDashbordBundle:Dashbord:layoutDashbord.html.twig" %}
+
+{% block body %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Modifier votre mot de passe
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="{{ path('sl_dashbord_homepage') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                <li class="active">Profile</li>
+            </ol>
+        </section>
+
+
+
+        <section class="content">
+            <div class="login-box">
+            <div class="login-logo">
+               
+            </div><!-- /.login-logo -->
+            <div class="login-box-body">
+                {% if app.request.hasPreviousSession %}
+                    {% for type, messages in app.session.flashbag.all() %}
+                        <div class="alert alert-{{ type }}">
+                            <ul>
+                                {% for message in messages %}
+                                    <li>
+                                        {{ message }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <div>
+                    {% block fos_user_content %}
+                    {% endblock fos_user_content %}
+                </div>
+
+            </div><!-- /.login-box-body -->
+            </div>
+      </section><!-- /.content -->
+        </div>
+
+        <!--End Dashboard 2 -->
+        <div style="height: 40px;"></div>
+        {{ parent() }}
+        {%endblock%}

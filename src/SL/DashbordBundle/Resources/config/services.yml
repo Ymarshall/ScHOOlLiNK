@@ -1,0 +1,7 @@
+services:
+    sl_dashbord.matieres:
+        class: SL\DashbordBundle\Controller\SLGetMatiereService
+        arguments:
+            doctrine: "@doctrine"
+        tags:
+            -  { name: twig.extension }

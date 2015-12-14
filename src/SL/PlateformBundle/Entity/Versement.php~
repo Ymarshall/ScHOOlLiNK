@@ -1,0 +1,110 @@
+<?php
+
+namespace SL\PlateformBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * Versement
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="SL\PlateformBundle\Entity\VersementRepository")
+ */
+class Versement
+{
+    /**
+     * @ORM\ManyToOne(targetEntity="SL\PlateformBundle\Entity\Eleve", inversedBy="versements")
+     * @ORM\JoinColumn(name="eleve_id", referencedColumnName="id", nullable=true)
+     **/
+    private $eleve;
+    function getEleve() {
+        return $this->eleve;
+    }
+
+    function setEleve(Eleve $eleve) {
+        $this->eleve = $eleve;
+    }
+
+        /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="Montant", type="integer")
+     */
+    private $montant;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="Date_versement", type="date")
+     */
+    private $dateVersement;
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set montant
+     *
+     * @param integer $montant
+     *
+     * @return Versement
+     */
+    public function setMontant($montant)
+    {
+        $this->montant = $montant;
+
+        return $this;
+    }
+
+    /**
+     * Get montant
+     *
+     * @return integer
+     */
+    public function getMontant()
+    {
+        return $this->montant;
+    }
+
+    /**
+     * Set dateVersement
+     *
+     * @param \DateTime $dateVersement
+     *
+     * @return Versement
+     */
+    public function setDateVersement($dateVersement)
+    {
+        $this->dateVersement = $dateVersement;
+
+        return $this;
+    }
+
+    /**
+     * Get dateVersement
+     *
+     * @return \DateTime
+     */
+    public function getDateVersement()
+    {
+        return $this->dateVersement;
+    }
+}

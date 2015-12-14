@@ -1,0 +1,136 @@
+    #route paour acceder à la page d'aceuill
+sl_plateform_homepage:
+    path:     /
+    defaults: { _controller: SLPlateformBundle:Accueil:index }
+    
+sl_plateform_about:
+    path:     /about
+    defaults: { _controller: SLPlateformBundle:Accueil:about }
+
+sl_plateform_contact:
+    path:     /contact
+    defaults: { _controller: SLPlateformBundle:Accueil:contact }
+    
+sl_plateform_login:
+    path:     /connexion
+    defaults: { _controller: FOSUserBundle:Security:login }
+    
+sl_plateform_check:
+    path:     /connexion_check
+    defaults: { _controller: FOSUserBundle:Security:check }
+
+sl_plateform_logout:
+    path:     /logout
+    defaults: { _controller: FOSUserBundle:Security:logout }
+    
+jour:
+    resource: "@SLPlateformBundle/Controller/JourController.php"
+    type:     annotation
+
+emploi_temps:
+    resource: "@SLPlateformBundle/Controller/Emploi_tempsController.php"
+    type:     annotation
+    
+composant:
+    resource: "@SLPlateformBundle/Controller/ComposantController.php"
+    type:     annotation
+
+sexe:
+    resource: "@SLPlateformBundle/Controller/SexeController.php"
+    type:     annotation
+
+ecole:
+    resource: "@SLPlateformBundle/Controller/EcoleController.php"
+    type:     annotation
+    
+matiere:
+    resource: "@SLPlateformBundle/Controller/MatiereController.php"
+    type:     annotation
+
+classe:
+    resource: "@SLPlateformBundle/Controller/ClasseController.php"
+    type:     annotation
+
+annee_scolaire:
+    resource: "@SLPlateformBundle/Controller/Annee_scolaireController.php"
+    type:     annotation
+
+eleve:
+    resource: "@SLPlateformBundle/Controller/EleveController.php"
+    type:     annotation
+    
+professeur:
+    resource: "@SLPlateformBundle/Controller/ProfesseurController.php"
+    type:     annotation
+
+type_details_cr:
+    resource: "@SLPlateformBundle/Controller/Type_details_crController.php"
+    type:     annotation
+
+details_cr:
+    resource: "@SLPlateformBundle/Controller/Details_crController.php"
+    type:     annotation
+    
+type_note:
+    resource: "@SLPlateformBundle/Controller/Type_noteController.php"
+    type:     annotation
+    
+notes:
+    resource: "@SLPlateformBundle/Controller/NotesController.php"
+    type:     annotation
+    
+professeurmatiere:
+    resource: "@SLPlateformBundle/Controller/ProfesseurMatiereController.php"
+    type:     annotation
+    
+details_ct:
+    resource: "@SLPlateformBundle/Controller/Details_ctController.php"
+    type:     annotation
+    
+cours_exo:
+    resource: "@SLPlateformBundle/Controller/Cours_exoController.php"
+    type:     annotation
+    
+statut:
+    resource: "@SLPlateformBundle/Controller/StatutController.php"
+    type:     annotation
+
+message:
+    resource: "@SLPlateformBundle/Controller/MessageController.php"
+    type:     annotation
+
+educateur:
+    resource: "@SLPlateformBundle/Controller/EducateurController.php"
+    type:     annotation
+
+information:
+    resource: "@SLPlateformBundle/Controller/InformationController.php"
+    type:     annotation
+
+parents:
+    resource: "@SLPlateformBundle/Controller/ParentsController.php"
+    type:     annotation
+
+examen:
+    resource: "@SLPlateformBundle/Controller/ExamenController.php"
+    type:     annotation
+
+eleveexamen:
+    resource: "@SLPlateformBundle/Controller/EleveExamenController.php"
+    type:     annotation
+
+mois:
+    resource: "@SLPlateformBundle/Controller/MoisController.php"
+    type:     annotation
+
+reglement:
+    resource: "@SLPlateformBundle/Controller/ReglementController.php"
+    type:     annotation
+
+type_reglement:
+    resource: "@SLPlateformBundle/Controller/Type_reglementController.php"
+    type:     annotation
+    
+envoimail:
+    path:     /contact/mail
+    defaults: { _controller: SLPlateformBundle:Accueil:mail }

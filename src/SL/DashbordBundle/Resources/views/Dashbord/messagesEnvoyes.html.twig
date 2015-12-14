@@ -1,0 +1,102 @@
+{% extends "SLDashbordBundle:Dashbord:layoutDashbord.html.twig" %}
+
+{% block body %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Messages
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="{{ path('sl_dashbord_homepage') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                <li class="active">Messages</li>
+            </ol>
+        </section>
+
+
+
+        <!-- Main content -->
+        <section class="content">
+          <div class="row">
+            <div class="col-md-3 col-xs-12">
+              <a href="{{ path('sl_dashbord_compose') }}" class="btn btn-primary btn-block margin-bottom">Compose</a>
+              <div class="box box-solid">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Menu</h3>
+                  <div class="box-tools">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                  </div>
+                </div>
+                <div class="box-body no-padding">
+                  <ul class="nav nav-pills nav-stacked">
+                    <li><a href="{{ path('sl_dashbord_message') }}"><i class="fa fa-inbox"></i> Boite de reception <span class="label label-primary pull-right">{{getNbombreMsgNonLuByUser(app.user.id)~' / '~total}}</span></a></li>
+                    <li class="active"><a href="{{ path('sl_dashbord_message_envoye') }}"><i class="fa fa-envelope-o"></i> Messages envoyés <span class="label label-default pull-right">{{totalSend}}</span></a></li>
+                  </ul>
+                </div><!-- /.box-body -->
+              </div><!-- /. box -->
+              
+            </div><!-- /.col -->
+            <div class="col-md-9">
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Messages envoyés</h3>
+                  <div class="box-tools pull-right">
+                    <div class="has-feedback">
+                      <input type="text" class="form-control input-sm" placeholder="Search Mail">
+                      <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                    </div>
+                  </div><!-- /.box-tools -->
+                </div><!-- /.box-header -->
+                <div class="box-body padding">
+                  <div class="mailbox-controls">
+                   
+                    <a href="{{ path('sl_dashbord_message_envoye') }}" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></a>
+                   
+                  </div>
+                  <div class="table-responsive mailbox-messages">
+                      <table id="example1" class="table table-hover table-striped">
+                        <thead><th></th><th></th><th></th></thead>
+                      <tbody>
+                          {%for message in lesMessages%}
+                              <tr>                        
+                          <td class="mailbox-name"><a href="{{ path('sl_dashbord_message_lire',{'id':message.id}) }}">{%if message.messagespersonnes|length > 1%}groupe {%else%} {{message.messagespersonnes[0].personne.email}}{%endif%}</a></td>
+                          <td class="mailbox-subject"><b>{{message.objet|capitalize}}</b> - {{message.contenu}}</td>
+                          <td class="mailbox-date">{{message.dateMessage|date('d-m-Y H:i')}}</td>
+                        </tr>
+                        {%endfor%}
+                      </tbody>
+                    </table><!-- /.table -->
+                  </div><!-- /.mail-box-messages -->
+                </div><!-- /.box-body -->
+                <div class="box-footer no-padding">
+                  <div class="mailbox-controls">
+                    </div><!-- /.btn-group -->
+                    <a href="{{ path('sl_dashbord_message_envoye') }}" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></a>
+                    
+                  </div>
+                </div>
+              </div><!-- /. box -->
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </section><!-- /.content -->
+    </div>
+    <!--End Dashboard 2 -->
+    <div style="height: 40px;"></div>
+    {{ parent() }}
+ <!-- jQuery 2.1.4 -->
+    <script src="{{asset('bundles/sldashbord/plugins/jQuery/jQuery-2.1.4.min.js')}}"></script>
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#example1").DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false
+            });
+        });
+    </script>
+{%endblock%}

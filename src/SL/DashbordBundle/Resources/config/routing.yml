@@ -1,0 +1,268 @@
+sl_dashbord_homepage:
+    path:     /dashboard
+    defaults: { _controller: SLDashbordBundle:Dashbord:index }
+
+sl_dashbord_professeur:
+    path:     /dashboard/eleve/professeur/list
+    defaults: { _controller: SLDashbordBundle:Dashbord:professeursEleve }
+    
+sl_dashbord_ecole:
+    path:     /dashboard/ecole
+    defaults: { _controller: SLDashbordBundle:Dashbord:ecole }
+    
+sl_dashbord_modifier_ecole:
+    path:     /dashboard/ecole/{id}/edit
+    defaults: { _controller: SLPlateformBundle:Ecole:edit }
+    
+sl_dashbord_carnet:
+    path:     /dashboard/eleve/carnet
+    defaults: { _controller: SLDashbordBundle:Dashbord:carnetCorrespondance }
+
+sl_dashbord_interrodev:
+    path:     /dashboard/eleve/interroDev
+    defaults: { _controller: SLDashbordBundle:Dashbord:interroDev }
+    
+sl_dashbord_cahiertexte:
+    path:     /dashboard/eleve/cahierText/{nombre}
+    defaults: { _controller: SLDashbordBundle:Dashbord:cahierText }
+    
+sl_dashbord_coursexo:
+    path:     /dashboard/eleve/coursexo/{nombre}
+    defaults: { _controller: SLDashbordBundle:Dashbord:coursExo }
+    
+sl_dashbord_professeur_list:
+    path:     /dashboard/list/professeur
+    defaults: { _controller: SLDashbordBundle:Dashbord:professeursList }
+    
+sl_dashbord_educateur_list:
+    path:     /dashboard/list/educateur
+    defaults: { _controller: SLDashbordBundle:Dashbord:educateursList }
+
+sl_dashbord_message:
+    path:     /dashboard/message
+    defaults: { _controller: SLDashbordBundle:Dashbord:message }
+    
+sl_dashbord_message_envoye:
+    path:     /dashboard/message/envoyes
+    defaults: { _controller: SLDashbordBundle:Dashbord:messageEnvoyes }
+
+sl_dashbord_message_lire:
+    path:     /dashboard/message/lire/{id}
+    defaults: { _controller: SLDashbordBundle:Dashbord:lireMessage }
+    
+sl_dashbord_message_supprimer:
+    path:     /dashboard/message/supprimer
+    defaults: { _controller: SLDashbordBundle:Dashbord:supprimerMessage }
+    
+sl_professeur_listeeleves:
+    path:     /dashboard/classe/list/{nombre}
+    defaults: { _controller: SLDashbordBundle:Professeur:listeEleve }
+
+sl_professeur_cahier_texte:
+    path:     /dashboard/professeur/cahierTexte/{classe}/{matiere}
+    defaults: { _controller: SLDashbordBundle:Professeur:cahierTexte }
+
+sl_professeur_ajout_cahier:
+    path:     /dashboard/professeur/cahierTexte/ajout
+    defaults: { _controller: SLPlateformBundle:Details_ct:create }
+    
+sl_professeur_modifier_cahier:
+    path:     /dashboard/professeur/cahierTexte/admin/{id}/edit
+    defaults: { _controller: SLPlateformBundle:Details_ct:edit }
+
+sl_professeur_cours_exo:
+    path:     /dashboard/professeur/coursExo/{classe}/{matiere}
+    defaults: { _controller: SLDashbordBundle:Professeur:coursExo }
+    
+sl_professeur_ajout_cours_exo:
+    path:     /dashboard/professeur/coursExo/ajout
+    defaults: { _controller: SLPlateformBundle:Cours_exo:create }
+    
+sl_professeur_modifier_cours_exo:
+    path:     /dashboard/professeur/coursExo/admin/{id}/edit
+    defaults: { _controller: SLPlateformBundle:Cours_exo:edit }
+
+sl_professeur_supprimer_cours_exo:
+    path:     /dashboard/professeur/coursExo/{id}
+    defaults: { _controller: SLPlateformBundle:Cours_exo:delete }
+
+sl_dashbord_compose:
+    path:     /dashboard/compose
+    defaults: { _controller: SLPlateformBundle:Message:create }
+    
+sl_dashbord_service_mail:
+    path:     /dashboard/service/mail
+    defaults: { _controller: SLDashbordBundle:Service:listAdresseJson }
+
+sl_professeur_devoirs_interro:
+    path:     /dashboard/professeur/devoirsInterro/{classe}/{matiere}
+    defaults: { _controller: SLDashbordBundle:Professeur:devoirsInterro }
+    
+sl_professeur_ajouter_notes:
+    path:     /dashboard/professeur/devoirsInterro/ajout
+    defaults: { _controller: SLPlateformBundle:Notes:create }
+    
+sl_professeur_modifier_notes:
+    path:     /dashboard/professeur/devoirsInterro/show/{id}/edit
+    defaults: { _controller: SLPlateformBundle:Notes:edit }
+    
+sl_professeur_ajouter_classe:
+    path:     /dashboard/classe/ajout
+    defaults: { _controller: SLPlateformBundle:Classe:create }
+    
+sl_professeur_list_classe:
+    path:     /dashboard/classe/list
+    defaults: { _controller: SLDashbordBundle:Admin:listClasse }
+
+sl_admin_cahier_texte:
+    path:     /dashboard/admin/cahierTexte/{classe}/{matiere}
+    defaults: { _controller: SLDashbordBundle:Admin:cahierTexte }
+
+
+sl_admin_modifier_classe:
+    path:     /dashboard/admin/classe/{id}/edit
+    defaults: { _controller: SLPlateformBundle:Classe:edit }
+
+sl_admin_supprimer_classe:
+    path:     /dashboard/admin/classe/{id}
+    defaults: { _controller: SLPlateformBundle:Classe:delete }
+
+sl_admin_professeur_list:
+    path:     /dashboard/admin/professeurs/
+    defaults: { _controller: SLDashbordBundle:Admin:professeursList }
+
+sl_admin_professeur_ajout:
+    path:     /dashboard/admin/professeurs/ajout
+    defaults: { _controller: SLPlateformBundle:Professeur:create }
+
+sl_admin_educateur_list:
+    path:     /dashboard/admin/educateurs/
+    defaults: { _controller: SLDashbordBundle:Admin:educateursList }
+
+sl_admin_educateur_ajout:
+    path:     /dashboard/admin/educateurs/ajout
+    defaults: { _controller: SLPlateformBundle:Educateur:create }
+    
+sl_admin_professeur_supprimer:
+    path:     /dashboard/admin/professeur/delete/{id}
+    defaults: { _controller: SLPlateformBundle:Professeur:delete }    
+
+sl_admin_professeur_voir:
+    path:     /dashboard/admin/professeur/voir/{id}
+    defaults: { _controller: SLDashbordBundle:Admin:voirProfesseur}   
+
+sl_admin_educateur_voir:
+    path:     /dashboard/admin/educateur/voir/{id}
+    defaults: { _controller: SLDashbordBundle:Admin:voirEducateur}  
+    
+sl_admin_educateur_supprimer:
+    path:     /dashboard/admin/educateur/delete/{id}
+    defaults: { _controller: SLPlateformBundle:Educateur:delete }   
+
+sl_educateur_carnet:
+    path:     /dashboard/educateur/carnet/{id}
+    defaults: { _controller: SLDashbordBundle:Educateur:carnetCorrespondance }
+
+sl_educateur_supprimer_detailcr:
+    path:     /dashboard/educateur/carnet/supprime/{id}
+    defaults: { _controller: SLPlateformBundle:Details_cr:delete }
+
+sl_educateur_modifier_eleve:
+    path:     /dashboard/educateur/eleve/{id}/edit
+    defaults: { _controller: SLPlateformBundle:Eleve:edit }
+    
+sl_educateur_ajouter_eleve:
+    path:     /dashboard/educateur/eleve/ajout
+    defaults: { _controller: SLPlateformBundle:Eleve:create }
+
+sl_educateur_ajouter_parent:
+    path:     /dashboard/educateur/parent/ajout
+    defaults: { _controller: SLPlateformBundle:Parents:create }
+    
+sl_dashbord_parent_cahiertexte:
+    path:     /dashboard/parent/cahierText/{nombre}
+    defaults: { _controller: SLDashbordBundle:Parent:cahierText }
+
+sl_dashbord_parent_interrodev:
+    path:     /dashboard/parent/interroDev
+    defaults: { _controller: SLDashbordBundle:Parent:interroDev }
+
+sl_dashbord_parent_professeur:
+    path:     /dashboard/parent/professeur/list
+    defaults: { _controller: SLDashbordBundle:Parent:professeursEleve }
+
+sl_dashbord_profile:
+    path:     /dashboard/profile
+    defaults: { _controller: SLDashbordBundle:Dashbord:profile }
+    
+sl_dashbord_profile_pass:
+    path:     /dashbord/profile/password
+    defaults: { _controller: FOSUserBundle:ChangePassword:changePassword }
+
+sl_dashbord_examen_ajouter:
+    path:     /dashbord/examen/note/{eleve}
+    defaults: { _controller: SLDashbordBundle:Dashbord:examenBlancAjouter }
+    
+sl_dashbord_examen_voir:
+    path:     /dashbord/examen/voir/{id}
+    defaults: { _controller: SLDashbordBundle:Dashbord:examenBlancVoir }
+    
+sl_dashbord_examen_voir_client:
+    path:     /dashbord/examen/voir/client/{id}/{examen}
+    defaults: { _controller: SLDashbordBundle:Dashbord:examenClient }
+
+sl_dashbord_examen_list:
+    path:     /dashbord/examen/{id}
+    defaults: { _controller: SLDashbordBundle:Dashbord:examenBlancList }
+
+sl_dashbord_examen_new:
+    path:     /dashbord/examen/admin/new
+    defaults: { _controller: SLPlateformBundle:Examen:create }
+
+sl_admin_examen_list:
+    path:     /dashbord/examen/admin/list
+    defaults: { _controller: SLDashbordBundle:Admin:listExamen }
+
+sl_admin_supprimer_examen:
+    path:     /dashboard/admin/examen/delete/{id}
+    defaults: { _controller: SLPlateformBundle:Examen:delete }  
+
+sl_admin_modifier_examen:
+    path:     /dashboard/admin/examen/{id}/edit
+    defaults: { _controller: SLPlateformBundle:Examen:edit }
+    
+sl_dashbord_emploi:
+    path:     /dashbord/emploi_temps/{id}
+    defaults: { _controller: SLDashbordBundle:Dashbord:emploiTemps }
+    
+sl_dashbord_ajouter_composant:
+    path:     /dashbord/emploi_temps/ajout/{id}
+    defaults: { _controller: SLDashbordBundle:Dashbord:ajouterComposant }
+
+sl_dashbord_modifier_composant:
+    path:     /dashbord/emploi_temps/admin/{id}/edit
+    defaults: { _controller: SLPlateformBundle:Composant:edit }
+
+sl_dashbord_supprimer_composant:
+    path:     /dashbord/emploi_temps/admin/{id}
+    defaults: { _controller: SLPlateformBundle:Composant:delete }
+    
+sl_admin_scolarite_classe:
+    path:     /dashbord/classe/scolarite/{id}
+    defaults: { _controller: SLDashbordBundle:Dashbord:listeScolarite }
+    
+sl_admin_add_scolarite:
+    path:     /dashbord/admin/classe/scolarite/{type}
+    defaults: { _controller: SLDashbordBundle:Dashbord:addScolarite }
+
+sl_admin_modifier_reglement:
+    path:     /dashbord/admin/scolarite/{id}/edit
+    defaults: { _controller: SLPlateformBundle:Reglement:edit }
+
+sl_admin_supprimer_reglement:
+    path:     /dashbord/admin/scolarite/{id}
+    defaults: { _controller: SLPlateformBundle:Reglement:delete }
+    
+sl_admin_scolarite_classe_bis:
+    path:     /dashbord/parent/scolarite/{id}
+    defaults: { _controller: SLDashbordBundle:Dashbord:listeScolariteBis }

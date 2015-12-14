@@ -1,0 +1,85 @@
+{% extends "SLDashbordBundle:Dashbord:layoutDashbord.html.twig" %}
+
+{% block body %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Carnet de Correspondance
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="{{ path('sl_dashbord_homepage') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                <li class="active">Carnet de Correspondance</li>
+            </ol>
+        </section>
+
+
+
+        <!-- Main content -->
+        <section class="content">
+
+            <div class="row-fluid">
+                <div class="col-xs-12 col-sm-12">
+                    <!--Start Dashboard Tab 1-->
+                    <div id="dashboard-overview" class="row" style="visibility: visible; position: relative;">
+                        <div class="col-xs-12">
+
+                            <div class="row">
+                                {% for types in lesTypes %}
+                                    <div class="col-xs-12 col-sm-6">
+                                        
+                                            <div class="box box-solid {% if types.libelle == "Absence" %}box-warning{% elseif types.libelle == "Santé" %}box-primary{% elseif types.libelle == "Retard" %}box-info{% elseif types.libelle == "Discipline" %}box-danger{% else %}box-info{% endif %}">
+
+                                                            <div class="box-header with-border"">
+                                                                <h3 class="box-title">
+                                                                    <span>{{ types.libelle|capitalize}}</span>
+                                                                </h3>
+                                                                <div class="box-tools pull-right">
+                                                                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Réduire"><i class="fa fa-minus"></i></button>
+                                                                    <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Supprimer"><i class="fa fa-times"></i></button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="box-body">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                        <tr>
+                                                                            <th>#</th>
+                                                                            <th>Date</th>
+                                                                            <th>Objet</th>
+                                                                            <th>Commentaire</th>
+                                                                        </tr>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        {%for details in getDetailsCrByTypeAndUser(types.id,app.session.get('enfant')) %}
+                                                                            <tr>
+                                                                                <td>{{loop.index}}</td>
+                                                                                <td>{{details.dateMotif|date('d-m-Y')}}</td>
+                                                                                <td>{{details.objet}}</td>
+                                                                                <td>{{details.description}}</td>
+                                                                            </tr>
+                                                                        {% endfor %}
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!--End Dashboard Tab 1-->
+
+                            </div>
+                            <div class="clearfix"></div>
+                            </section>
+                        </div>
+                        <!--End Dashboard 2 -->
+                        <div style="height: 40px;"></div>
+                        {{ parent() }}
+
+                    {%endblock%}

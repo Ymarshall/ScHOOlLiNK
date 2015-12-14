@@ -1,0 +1,102 @@
+{% extends "SLDashbordBundle:Dashbord:layoutDashbord.html.twig" %}
+
+{% block body %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Bienvenue
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="{{ path('sl_dashbord_homepage') }}"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Mes Classes</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            {% for message in app.session.flashbag.get('notice') %}
+                        <div class="alert alert-success">
+                             <p>Notice : {{ message }}</p>
+                        </div>
+                    {% endfor %}
+            <div class="box box-solid box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">Liste de classe : {{laClasse.libelle}}</h3>
+                    <div class="box-tools pull-right">
+                        <a class="btn btn-box-tool" download="Sch_fichier_eleves.xls" href="#" onclick="return ExcellentExport.excel(this, 'example1', 'Sch_fichier');"><i class="fa fa-file-excel-o"></i> &nbsp;exporter</a>
+                        {%if is_granted("ROLE_EDUCATEUR") or is_granted("ROLE_PROFESSEUR") or is_granted("ROLE_ADMIN") %}<a href="{{ path('sl_dashbord_emploi',{'id':laClasse.id})}}"><i class="fa fa-bars"></i> Emploi du temps</a>{%endif%}
+                        {%if is_granted("ROLE_ADMIN") %}
+                            <a href="{{ path('sl_professeur_ajouter_classe')}}">Ajouter une Classe</a>
+                            {%endif%}
+                    </div>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>N°</th>
+                                <th>Photo</th>
+                                <th>Nom</th>
+                                <th>Prénoms</th>
+                                <th>Date de Naissance</th>
+                                <th>Téléphone</th>
+                                <th>Email</th>
+                                {%if is_granted("ROLE_EDUCATEUR") %}<th>Action</th>{%endif%}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for eleves in lesEleves %}
+                                <!-- Start: list_row -->
+                                <tr>
+                                    <td>{{loop.index}}</td>
+                                    <td><img class="img-rounded" src="{{asset(eleves.personne.image.webPath)}}" width="60" height="60" alt=""></td>
+                                    <td>{{eleves.personne.nom}}</td>
+                                    <td>{{eleves.personne.prenoms}}</td>
+                                    <td>{{eleves.personne.dateNaissance|date('d-m-Y')}}</td>
+                                    <td>{{eleves.personne.telephone}}</td>
+                                    <td>{{eleves.personne.email}}</td>
+                                    {%if (is_granted("ROLE_EDUCATEUR")) or (is_granted("ROLE_ADMIN"))%}<td><a href="{{ path('sl_educateur_carnet', {'id' : eleves.id } ) }}" class="btn btn-primary btn-social"><i class="fa fa-bar-chart-o"></i> Carnet de correspondance</a></td>{%endif%}
+                                </tr>
+                            {%endfor%}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>N°</th>
+                                <th>Photo</th>
+                                <th>Nom</th>
+                                <th>Prénoms</th>
+                                <th>Date de Naissance</th>
+                                <th>Téléphone</th>
+                                <th>Email</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div><!-- /.box-body -->
+                <div class="box-footer">
+                    Effectif : {{effectif}}
+                </div>
+            </div><!-- /.box -->
+            <div class="clearfix"></div>
+        </section>
+    </div>
+    <div style="height: 40px;"></div>
+    {{ parent() }}  
+    <!-- jQuery 2.1.4 -->
+    <script src="{{asset('bundles/sldashbord/plugins/jQuery/jQuery-2.1.4.min.js')}}"></script>
+        <script src="{{asset('bundles/sldashbord/js/excellentexport.js')}}">
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#example1").DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false
+            });
+        });
+    </script>
+{%endblock%}

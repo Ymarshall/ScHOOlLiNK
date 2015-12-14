@@ -1,0 +1,115 @@
+{% extends "SLDashbordBundle:Dashbord:layoutDashbord.html.twig" %}
+
+{% block body %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Profile
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="{{ path('sl_dashbord_homepage') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                <li class="active">Profile</li>
+            </ol>
+        </section>
+
+
+
+        <section class="content">
+
+            <div class="row">
+                <div class="col-md-3 col-xs-12">
+
+                    <!-- Profile Image -->
+                    <div class="box box-primary">
+                        <div class="box-body box-profile">
+                            <img class="profile-user-img img-responsive img-circle" src="{{ asset(app.user.image.webPath) }}" alt="{{app.user.image.alt}}">
+                            <h3 class="profile-username text-center">{{app.user.nom ~' '~app.user.prenoms}}</h3>
+                            <p class="text-muted text-center">{{getUserStatut(app.user.id).libelle }}</p>
+
+                            <ul class="list-group list-group-unbordered">
+                                
+                                 {%if is_granted("ROLE_ELEVE") %}
+                                     <li class="list-group-item">
+                                     <b>Classe</b> <a class="pull-right">{{app.user.eleves[0].classe.libelle}}</a>
+                                     </li>
+                                     {%endif%}
+                                
+                                <li class="list-group-item">
+                                    <b>Sexe</b> <a class="pull-right">{{app.user.sexe.libelle}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Date d'inscription</b> <a class="pull-right">{{app.user.dateCreation|date('d-m-Y')}}</a>
+                                </li>
+                            </ul>
+
+                            <a href="{{ path('sl_dashbord_profile_pass') }}" class="btn btn-block btn-primary btn-social"><i class="glyphicon glyphicon-pencil"></i> Modifier Mot de passe </a>
+
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+
+                    <!-- About My parent -->
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Informations Personnelles</h3>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+                            <ul class="list-group list-group-unbordered">
+                                {%if is_granted("ROLE_ELEVE") %}
+                                <li class="list-group-item">
+                                    <b>Matricule</b> <a class="pull-right">{{app.user.eleves[0].matricule}}</a>
+                                </li>
+                                {%endif%}
+                                {%if is_granted("ROLE_PROFESSEUR") %}
+                                    <li class="list-group-item">
+                                    <b>Matricule</b> <a class="pull-right">{{app.user.professeurs[0].matricule}}</a>
+                                </li>
+                                {%endif%}
+                                <li class="list-group-item">
+                                    <b>Nom</b> <a class="pull-right">{{app.user.nom}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Prénoms</b> <a class="pull-right">{{app.user.prenoms}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Téléphone</b> <a class="pull-right">{{app.user.telephone}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Email</b> <a class="pull-right">{{app.user.email}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Date de Naissance</b> <a class="pull-right">{{app.user.dateNaissance|date('d-m-Y')}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Adresse</b> <a class="pull-right">{{app.user.adresse.adresse}}</a>
+                                </li>
+                            </ul>
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+                    
+                </div><!-- /.col -->
+                <div class="col-md-9">
+                    <div class="nav-tabs-custom">
+                        
+                        <div class="tab-content">
+                            
+                                 <div class="tab-pane" id="ajouter">
+                   
+                  </div><!-- /.tab-pane -->
+                       
+                            </div><!-- /.tab-content -->
+                        </div><!-- /.nav-tabs-custom -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+
+            </section><!-- /.content -->
+        </div>
+
+        <!--End Dashboard 2 -->
+        <div style="height: 40px;"></div>
+        {{ parent() }}
+        <!-- jQuery 2.1.4 -->
+        <script src="{{asset('bundles/sldashbord/plugins/jQuery/jQuery-2.1.4.min.js')}}"></script>
+
+        {%endblock%}

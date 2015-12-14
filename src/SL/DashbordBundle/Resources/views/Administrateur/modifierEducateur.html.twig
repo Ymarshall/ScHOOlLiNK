@@ -1,0 +1,64 @@
+{% extends "SLDashbordBundle:Dashbord:layoutDashbord.html.twig" %}
+
+{% block body %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Educateurs
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="{{ path('sl_dashbord_homepage') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                <li class="active">Educateurs</li>
+            </ol>
+        </section>
+
+
+
+        <!-- Main content -->
+        <section class="content">
+            
+          <div class="row">
+            <div class="col-md-2 col-xs-12">
+              <a href="{{ path('sl_admin_educateur_list') }}" class="btn btn-block btn-primary btn-social"><i class="glyphicon glyphicon-list"></i> Liste</a>
+               <a href="#" class="btn btn-block btn-primary btn-social"><i class="glyphicon glyphicon-remove"></i> Supprimer  </a>
+            
+            </div><!-- /.col -->
+            <div class="col-md-10 col-xs-12">
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Modifier un éducateur</h3>
+                 
+                </div><!-- /.box-header -->
+                <div class="box-body padding">                 
+                    <table id="example1" class="table">
+                        <tbody>
+                        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+                                                {# Les erreurs générales du formulaire. #}
+                                                {{ form_errors(form) }}
+                                                
+                                            <div class="form-group">
+                                                {{ form_label(form.personne, "Identification", {'label_attr': {'class': 'control-label'}}) }}
+                                                {{ form_errors(form.personne) }}
+                                                {{ form_widget(form.personne, {'attr': {'class': 'requiered'}}) }}
+                                            </div>
+                        
+                    </tbody>
+                                            
+                </table>
+                </div><!-- /.box-body -->
+                <div class="box-footer">
+                                       {{ form_widget(form.submit, {'attr': {'class': 'btn btn-lg btn-primary'}}) }}
+                                            {{ form_end(form) }}
+                                    </div>
+              </div><!-- /. box -->
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </section><!-- /.content -->
+    </div>
+    <!--End Dashboard 2 -->
+    <div style="height: 40px;"></div>
+    {{ parent() }}
+{%endblock%}

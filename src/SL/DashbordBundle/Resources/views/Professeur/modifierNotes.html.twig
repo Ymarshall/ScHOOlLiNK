@@ -1,0 +1,106 @@
+{% extends "SLDashbordBundle:Dashbord:layoutDashbord.html.twig" %}
+
+{% block body %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Modifier 
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="{{ path('sl_dashbord_homepage') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                <li class="active">Devoirs et interrogations</li>
+            </ol>
+        </section>
+
+
+
+        <!-- Main content -->
+        <section class="content">
+
+            <div class="row">
+                <div class="col-md-3 col-xs-12">
+                    <a href="{{ path('sl_professeur_devoirs_interro', {'classe': app.session.get('classe_courante') ,'matiere': app.session.get('matiere_courante')}) }}" class="btn btn-primary btn-block margin-bottom">RETOUR</a>
+
+                </div><!-- /.col -->
+                <div class="col-md-9 col-xs-12">
+                    <!--Start Dashboard Tab 1-->
+                    <div id="dashboard-overview" class="row" style="visibility: visible; position: relative;">
+                        <div class="col-xs-12">
+
+                            <div class="row">
+
+                                <div class="box box-solid box-info">
+
+                                    <div class="box-header with-border">
+                  <h3 class="box-title">Formulaire</h3>
+                </div>
+                                    <div class="box-body">
+                                        <table class="table">
+                                            <tbody>
+                                                {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+                                                {# Les erreurs générales du formulaire. #}
+                                                {{ form_errors(form) }}
+                                                
+                                                <div class="form-group">
+                                                {{ form_label(form.dateCompo, "Date de la composition", {'label_attr': {'class': 'control-label'}}) }}
+                                                {{ form_errors(form.dateCompo) }}
+                                                {{ form_widget(form.dateCompo, {'attr': {'class': 'form-control'}}) }}
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                {{ form_label(form.type_note, "Type de note", {'label_attr': {'class': 'control-label'}}) }}
+                                                {{ form_errors(form.type_note) }}
+                                                {{ form_widget(form.type_note, {'attr': {'class': 'required form-control'}}) }}
+                                            </div>
+                                            <div class="form-group">
+                                        {{ form_label(form.note, "Note", {'label_attr': {'class': 'control-label'}}) }}
+                                        {{ form_errors(form.note) }}
+                                        {{ form_widget(form.note, {'attr': {'class': 'required form-control'}}) }}
+                                    </div>
+
+                                            <div class="form-group">
+                                                {{ form_label(form.coefficient, "Coefficient", {'label_attr': {'class': 'control-label'}}) }}
+                                                {{ form_errors(form.coefficient) }}
+                                                {{ form_widget(form.coefficient, {'attr': {'class': 'required form-control'}}) }}
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                {{ form_label(form.appreciation, "Appréciation", {'label_attr': {'class': 'control-label'}}) }}
+                                                {{ form_errors(form.appreciation) }}
+                                                {{ form_widget(form.appreciation, {'attr': {'class': 'required form-control'}}) }}
+                                            </div>
+
+                                            
+                                            
+                                            
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="box-footer">
+                                       {{ form_widget(form.submit, {'attr': {'class': 'btn btn-lg btn-primary'}}) }}
+                                            {{ form_end(form) }}
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <!--End Dashboard Tab 1-->
+
+                </div>
+            </div>
+                <div class="clearfix"></div>
+        </section>
+    </div>
+    <!--End Dashboard 2 -->
+    <div style="height: 40px;"></div>
+    
+    {{ parent() }}
+
+{%endblock%}

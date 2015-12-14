@@ -1,0 +1,94 @@
+{% extends "SLDashbordBundle:Dashbord:layoutDashbord.html.twig" %}
+
+{% block body %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Ajouter 
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="{{ path('sl_dashbord_homepage') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                <li class="active">Mes Classes</li>
+            </ol>
+        </section>
+
+
+
+        <!-- Main content -->
+        <section class="content">
+
+            <div class="row">
+                <div class="col-md-3 col-xs-12">
+                    <a href="{{ path('sl_professeur_list_classe') }}" class="btn btn-primary btn-block margin-bottom">RETOUR</a>
+
+                </div><!-- /.col -->
+                <div class="col-md-9 col-xs-12">
+                    <!--Start Dashboard Tab 1-->
+                    <div id="dashboard-overview" class="row" style="visibility: visible; position: relative;">
+                        <div class="col-xs-12">
+
+                            <div class="row">
+
+                                <div class="box box-solid box-info">
+
+                                    <div class="box-header with-border">
+                  <h3 class="box-title">Formulaire</h3>
+                </div>
+                                    <div class="box-body">
+                                        <table class="table">
+                                            <tbody>
+                                                {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+                                                {# Les erreurs générales du formulaire. #}
+                                                {{ form_errors(form) }}
+                                                
+                                                <div class="form-group">
+                                                {{ form_label(form.annee_scolaire, "Année scolaire", {'label_attr': {'class': 'control-label'}}) }}
+                                                {{ form_errors(form.annee_scolaire) }}
+                                                {{ form_widget(form.annee_scolaire, {'attr': {'class': 'form-control'}}) }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form_label(form.libelle, "Libéllé de la classe", {'label_attr': {'class': 'control-label'}}) }}
+                                                {{ form_errors(form.libelle) }}
+                                                {{ form_widget(form.libelle, {'attr': {'class': 'requiered form-control','placeholder': 'ex: 6e 2'}}) }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form_label(form.emploi_temps, "Emploi du temps", {'label_attr': {'class': 'control-label'}}) }}
+                                                {{ form_errors(form.emploi_temps) }}
+                                                {{ form_widget(form.emploi_temps, {'attr': {'class': 'required'}}) }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form_label(form.montantScolarite, "Montant de la scolairté", {'label_attr': {'class': 'control-label'}}) }}
+                                                {{ form_errors(form.montantScolarite) }}
+                                                {{ form_widget(form.montantScolarite, {'attr': {'class': 'form-control'}}) }}
+                                            </div>                                     
+                                            
+                                            
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="box-footer">
+                                       {{ form_widget(form.submit, {'attr': {'class': 'btn btn-lg btn-primary'}}) }}
+                                            {{ form_end(form) }}
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <!--End Dashboard Tab 1-->
+
+                </div>
+                <div class="clearfix"></div>
+        </section>
+    </div>
+    <!--End Dashboard 2 -->
+    <div style="height: 40px;"></div>
+    
+    {{ parent() }}
+{%endblock%}

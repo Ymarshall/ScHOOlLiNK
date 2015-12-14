@@ -1,0 +1,81 @@
+{% extends "SLDashbordBundle:Dashbord:layoutDashbord.html.twig" %}
+
+{% block body %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Cahier de Texte de {{laClasse.libelle|capitalize}} - {{laMatiere.libelle|upper}}
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="{{ path('sl_dashbord_homepage') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                <li class="active">Cahier de Texte</li>
+            </ol>
+        </section>
+
+
+
+        <!-- Main content -->
+        <section class="content">
+
+            <div class="row-fluid">
+                <div class="col-xs-12 col-sm-12">
+                    <!--Start Dashboard Tab 1-->
+                    <div id="dashboard-overview" class="row" style="visibility: visible; position: relative;">
+                        <div class="col-xs-12">
+
+                            <div class="row">
+                                {% for details in lesDetails %}
+                                    <div class="col-xs-12 col-sm-10">
+
+                                        <div class="box box-solid box-info">
+
+                                            <div class="box-header with-border"">
+                                                <h3 class="box-title">
+                                                    <span>{{ details.dateEnregistrement|date('d-m-Y')}}</span>
+                                                </h3>
+                                                <div class="box-tools pull-right">
+                                                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Réduire"><i class="fa fa-minus"></i></button>
+                                                    <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Supprimer"><i class="fa fa-times"></i></button>
+                                                </div>
+                                            </div>
+                                            <div class="box-body">
+                                                <table class="table">
+                                                    <thead>
+                                                        
+                                                        <tr>
+                                                            <th>Description</th>
+
+                                                        </tr>
+                                                
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>{{details.description|raw}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="box-footer">
+                                               Nombre d'heures : {{details.nombreHeure}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!--End Dashboard Tab 1-->
+
+            </div>
+            <div class="clearfix"></div>
+        </section>
+    </div>
+    <!--End Dashboard 2 -->
+    <div style="height: 40px;"></div>
+    {{ parent() }}
+
+{%endblock%}

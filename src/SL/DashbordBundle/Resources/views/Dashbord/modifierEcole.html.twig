@@ -1,0 +1,156 @@
+{% extends "SLDashbordBundle:Dashbord:layoutDashbord.html.twig" %}
+
+{% block body %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                L'école
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="{{ path('sl_dashbord_homepage') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                <li class="active">L'école</li>
+            </ol>
+        </section>
+
+
+
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Modification de L'école</h3>
+                        </div><!-- /.box-header -->
+                        <div class="box-body padding">
+                            <table class="table">
+                                            <tbody>
+                                                {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+                                                {# Les erreurs générales du formulaire. #}
+                                                {{ form_errors(form) }}
+
+                                            <div class="form-group">
+                                                {{ form_label(form.nom, "Nom de l'école", {'label_attr': {'class': 'control-label'}}) }}
+                                                {{ form_errors(form.nom) }}
+                                                {{ form_widget(form.nom, {'attr': {'class': 'required form-control'}}) }}
+                                            </div>
+
+                                            <div class="form-group">
+                                                {{ form_label(form.localisation, "Localisation", {'label_attr': {'class': 'control-label'}}) }}
+                                                {{ form_errors(form.localisation) }}
+                                                {{ form_widget(form.localisation, {'attr': {'class': 'required form-control'}}) }}
+                                            </div
+                                            
+                                            <div class="form-group">
+                                                {{ form_label(form.latitude, "Latitude", {'label_attr': {'class': 'control-label'}}) }}
+                                                {{ form_errors(form.latitude) }}
+                                                {{ form_widget(form.latitude, {'attr': {'class': 'form-control'}}) }}
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                {{ form_label(form.longitude, "Longitude", {'label_attr': {'class': 'control-label'}}) }}
+                                                {{ form_errors(form.longitude) }}
+                                                {{ form_widget(form.longitude, {'attr': {'class': 'form-control'}}) }}
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                {{ form_label(form.dateCreation, "Date de création", {'label_attr': {'class': 'control-label'}}) }}
+                                                {{ form_errors(form.dateCreation) }}
+                                                {{ form_widget(form.dateCreation, {'attr': {'class': 'datepicker form-control'}}) }}
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                {{ form_label(form.telephone, "Téléphone", {'label_attr': {'class': 'control-label'}}) }}
+                                                {{ form_errors(form.telephone) }}
+                                                {{ form_widget(form.telephone, {'attr': {'class': 'required form-control'}}) }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form_label(form.fax, "Fax", {'label_attr': {'class': 'control-label'}}) }}
+                                                {{ form_errors(form.fax) }}
+                                                {{ form_widget(form.fax, {'attr': {'class': 'form-control'}}) }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form_label(form.email, "Email", {'label_attr': {'class': 'control-label'}}) }}
+                                                {{ form_errors(form.email) }}
+                                                {{ form_widget(form.email, {'attr': {'class': 'required form-control'}}) }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form_label(form.siteWeb, "Site Web", {'label_attr': {'class': 'control-label'}}) }}
+                                                {{ form_errors(form.siteWeb) }}
+                                                {{ form_widget(form.siteWeb, {'attr': {'class': 'form-control'}}) }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form_label(form.descriptif, "Descriptif", {'label_attr': {'class': 'control-label'}}) }}
+                                                {{ form_errors(form.descriptif) }}
+                                                {{ form_widget(form.descriptif, {'attr': {'class': 'required form-control'}}) }}
+                                            </div>
+                                            
+                                            </tbody>
+                                        </table>
+                        </div><!-- /.box-body -->
+                        <div class="box-footer">
+                                       {{ form_widget(form.submit, {'attr': {'class': 'btn btn-lg btn-primary'}}) }}
+                                            {{ form_end(form) }}
+                                    </div>
+                    </div><!-- /.box -->
+                </div>
+
+
+                <div class="col-xs-4">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Manager</h3>
+                            <div class="box-tools pull-right">
+
+                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div><!-- /.box-header -->
+                        <div class="box-body padding">
+                            <div class="card">
+                                <h4 class="page-header">Jonh Smith</h4>
+                                <h5 class="page-header">Manager</h5>
+                                <p>
+                                    <span>+1 (123) 434-123445</span> <br>
+                                    <a href="mailto:john@company.com">john@company.com</a>
+                                </p>
+                            </div>
+                            <div class="card address">
+                                <div class="vcard">
+                                    <a href="#"><i class="fa fa-file"></i>.vCard</a>
+                                </div>
+                                <h4>Adress:</h4>
+                                <p>
+                                    <span>123456, Silicon walley</span> <br>
+                                    <span>str. Nonest. building 33</span>
+                                </p>
+                            </div>
+                        </div><!-- /.box-body -->
+                        <div class="box-footer text-center">
+                           
+                        </div><!-- /.box-footer -->
+                    </div><!--/.box -->
+
+
+                   
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </section>
+    </div>
+    <div style="height: 40px;"></div>
+    {{ parent() }} 
+      <!-- jQuery 2.1.4 -->
+    <script src="{{asset('bundles/sldashbord/plugins/jQuery/jQuery-2.1.4.min.js')}}"></script>
+   <script type="text/javascript">
+   $(document).ready(function (){
+    $(".datepicker").datepicker({
+    startDate: '-3d'
+})
+    });
+</script>
+{%endblock%}
